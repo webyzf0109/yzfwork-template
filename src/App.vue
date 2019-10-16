@@ -4,6 +4,8 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
+    <colorPicker></colorPicker>
+
     <router-view/>
   </div>
 </template>
