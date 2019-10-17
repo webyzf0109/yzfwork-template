@@ -6,11 +6,14 @@
       :border="border"
       :stripe="stripe"
       rowKey="id"
-      :tableWidth="900"
+      :tableWidth="tableWidth"
       @selectionChange="selectChange"
     >
-      <template slot="operation" slot-scope="scope">
+      <template slot="operation1" slot-scope="scope">
         <img class="img" :src="scope.scope.row.url" alt />
+      </template>
+      <template slot="operation2" slot-scope="scope">
+        <span>aaaa</span>
       </template>
     </y-table>
   </div>
@@ -21,6 +24,7 @@ export default {
     return {
       border: true,
       stripe:true,
+      tableWidth:'100%',
       tableData: [
         {
           id: 1,
@@ -79,9 +83,14 @@ export default {
           width: 150
         },
         {
-          slot: "operation",
+          slot: "operation1",
           width:100,
           label: "图片"
+        },
+        {
+          slot: "operation2",
+          width:100,
+          label: "slot2"
         },
         {
           label: "操作",

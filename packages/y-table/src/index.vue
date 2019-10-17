@@ -73,10 +73,50 @@
         :label="col.label"
         :width="col.width"
         :min-width="col.minWidth"
-        v-else-if="col.slot"
+        v-else-if="col.slot=='operation1'"
       >
         <template slot-scope="scope">
-          <slot name="operation" :scope="scope"></slot>
+          <slot name="operation1" :scope="scope"></slot>
+        </template>
+      </el-table-column>
+      <el-table-column
+        :label="col.label"
+        :width="col.width"
+        :min-width="col.minWidth"
+        v-else-if="col.slot=='operation2'"
+      >
+        <template slot-scope="scope" v-if="col.slot=='operation2'">
+          <slot name="operation2" :scope="scope"></slot>
+        </template>
+      </el-table-column>
+      <el-table-column
+        :label="col.label"
+        :width="col.width"
+        :min-width="col.minWidth"
+        v-else-if="col.slot=='operation3'"
+      >
+        <template slot-scope="scope" v-if="col.slot=='operation3'">
+          <slot name="operation3" :scope="scope"></slot>
+        </template>
+      </el-table-column>
+      <el-table-column
+        :label="col.label"
+        :width="col.width"
+        :min-width="col.minWidth"
+        v-else-if="col.slot=='operation4'"
+      >
+        <template slot-scope="scope" v-if="col.slot=='operation4'">
+          <slot name="operation4" :scope="scope"></slot>
+        </template>
+      </el-table-column>
+      <el-table-column
+        :label="col.label"
+        :width="col.width"
+        :min-width="col.minWidth"
+        v-else-if="col.slot=='operation5'"
+      >
+        <template slot-scope="scope" v-if="col.slot=='operation5'">
+          <slot name="operation5" :scope="scope"></slot>
         </template>
       </el-table-column>
     </el-table>
@@ -102,7 +142,7 @@ export default {
     stripe: {
       type: Boolean,
       default() {
-        return false;
+        return true;
       }
     },
     tableData: {
@@ -120,11 +160,14 @@ export default {
     border: {
       type: Boolean,
       default() {
-        return false;
+        return true;
       }
     },
     rowKey: {
-      type: [String, Number]
+      type: [String, Number],
+      default() {
+        return "id";
+      }
     },
     selectionChange: {
       type: Function,
@@ -145,10 +188,16 @@ export default {
   methods: {
     // 复选框发生变化的时候
     selectChangeHandler(selections) {
+      if (!selections) {
+        return;
+      }
       this.$emit("selectionChange", selections);
     },
     // 单选发生变化的时候
     handleCurrentChange(row) {
+      if (!row) {
+        return;
+      }
       this.curRow = row;
       this.curRowKey = row[this.rowKey];
       this.$emit("currentChange", row);
