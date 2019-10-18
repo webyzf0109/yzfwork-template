@@ -5,7 +5,9 @@
     </div>
     <el-form :model='iformData' :validate-on-rule-change='false' :rules="!disabled ? iRules : {}" :ref="formName" :label-width="labelWidth + 'px' "  :inline='inline' :disabled='disabled' v-update='formName'>
       <el-row class='clearfix'>
-        <el-col v-for='(item, index) in iformModel' :lg='!item.colSpan?colSpan:item.colSpan' :md='!item.mdSpan?24:item.mdSpan' :sm='!item.smSpan?24:item.smSpan' :xs='!item.smSpan?24:item.smSpan'  :key='index'>
+        <!-- :lg='!item.colSpan?colSpan:item.colSpan' :md='!item.mdSpan?colSpan:item.mdSpan' :sm='!item.smSpan?colSpan:item.smSpan' :xs='!item.smSpan?24:item.smSpan'  -->
+        <!-- :lg='!item.colSpan?colSpan:item.colSpan' :md='!item.colSpan?colSpan:item.colSpan'  :sm='!item.colSpan?colSpan:item.colSpan' :xs='!item.colSpan?colSpan:item.colSpan' -->
+        <el-col v-for='(item, index) in iformModel' :lg='!item.colSpan?colSpan:item.colSpan' :md='!item.colSpan?colSpan:item.colSpan'  :sm='!item.colSpan?colSpan:item.colSpan' :xs='!item.colSpan?colSpan:item.colSpan' :key='index'>
           <el-form-item  :prop="item.prop" :label="item.label" v-if='item.visible(iformData, iformModel, index)' :class='item.classes' :label-width='!item.labelWidth ? labelWidth + "px" : item.labelWidth'>
             <el-input
               class="cusInput"
@@ -18,12 +20,14 @@
               :placeholder="item.placeholder?item.placeholder:'请输入'+item.label"
               @change='item.onChange($event, iformModel, iformData, index)'
               :style="{width:item.width+'!important'}">
-              <template slot="append" v-if="item.slot != undefined ">{{item.slot}}</template>
+              <template slot="prepend" v-if="item.slotPre != undefined ">{{item.slotPre}}</template>
+              <template slot="append" v-if="item.slotApp != undefined ">{{item.slotApp}}</template>
             </el-input>
             <el-input
               type="textarea"
               v-else-if=" item.elemType == 'textarea' "
               v-model="iformData[item.prop]"
+              :rows="item.rows"
               :maxlength = 'item.maxlength'
               :readonly='item.readonly'
               resize='both'
@@ -42,7 +46,7 @@
               @focus='item.onFocus($event, iformModel, iformData, index)'
               :style="{width:item.width+'!important'}">
               <el-option
-                v-for=" (option, index) in item.options "
+                v-for=" (option, index) in item.options"
                 :key="index"
                 :disabled="option.disabled"
                 :label="option[item.col]"
@@ -91,19 +95,19 @@
               <el-radio
                 v-for='(option, rindex) in item.options'
                 v-if='!item.type'
-                :label="option[item.colVal]" :key='rindex'>
-                {{option[item.col]}}
+                :label="option[item.col]" :key='rindex'>
+                {{option[item.colVal]}}
               </el-radio>
               <el-radio-button
                 v-else
-                :label="option[item.colVal]" :key='rindex'>
-                {{option[item.col]}}
+                :label="option[item.col]" :key='rindex'>
+                {{option[item.colVal]}}
               </el-radio-button>
             </el-radio-group>
+            <!-- 时间 time v-validate='!item.directive?"void":{model: iformData, prop:item.prop, rule: item.directive}' -->
             <el-time-picker
               v-else-if=" item.elemType == 'time' "
               v-model="iformData[item.prop]"
-              v-validate='!item.directive?"void":{model: iformData, prop:item.prop, rule: item.directive}'
               :picker-options="{
                 selectableRange: item.timeRange
               }"
@@ -130,7 +134,12 @@
               @change='item.onChange($event, formModel, iformData, index)'
               :inactive-text="item.inactiveText">
             </el-switch>
-            <div v-else-if='item.elemType === "div"' v-html='item.format ? item.format(iformData, item.prop) : iformData[item.prop]'></div>
+
+            <!-- <div v-else-if='item.elemType === "div"' v-html='item.format ? item.format(iformData, item.prop) : iformData[item.prop]'></div> -->
+            <div v-else-if='item.elemType === "div"'>
+              <div v-if="item.slot">{{item.slot}}</div>
+              <div v-else>{{iformData[item.prop]}}</div>
+            </div>
           </el-form-item>
         </el-col>
         <div style="float: left;" >
@@ -144,8 +153,6 @@
 </template>
 
 <script>
-import * as validators from './validator'
-import {storages, deepClone, getDataType, resetObj} from './common'
 export default {
   name: 'y-form',
   data () {
@@ -177,7 +184,7 @@ export default {
     colSpan: {
       type: Number,
       default () {
-        return 6
+        return 24
       }
     },
     rules: {
@@ -243,15 +250,6 @@ export default {
         //   // 调用vuex的mutation同步数据
         //   this.syncFormData({formData: val, formName: this.formName})
         // }
-      },
-      deep: true
-    },
-    /*
-     * 监听vuex中的form的变化，同步数据到各个表单中
-     */
-    '$store.state.form': {
-      handler (val) {
-        this.iformData = val[`${this.formName}_FormData`]
       },
       deep: true
     },
@@ -377,47 +375,6 @@ export default {
     clearValidate () {
       this.$refs[this.formName].clearValidate()
     },
-
-
-    /**
-     * 详细逻辑
-     */
-    makeValidator (item,rules) {
-      if (item.rules !== undefined && item.visible !== false) {
-        rules[item.prop] = []
-        item.rules && item.rules.map(rule => {
-          if (typeof rule === 'function') {
-            rules[item.prop].push({validator: rule})
-          } else {
-            if (rule === 'required') {
-              rules[item.prop].push({required: true, message: '此项为必填项'})
-            } else {
-              rules[item.prop].push({validator: validators[rule + 'Check']})
-            }
-          }
-        })
-      }
-    },
-    initRules (formModel) {
-        let rules = {}
-        if (!formModel.map) {
-        throw new Error('请传入数组')
-        } else {
-            formModel.map(item => {
-                if (item.visible !== false) {
-                    if (item.group) {
-                        item.childs.map(citem => {
-                        this.makeValidator(citem,rules)
-                        })
-                    } else {
-                        this.makeValidator(item,rules)
-                    }
-                }
-            })
-        }
-        return rules
-    },
-    clearObj(obj) { return deepClone(obj) }
   }
 }
 </script>

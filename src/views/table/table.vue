@@ -57,12 +57,14 @@ export default {
         {
           label: "序号",
           type: "index",
-          width: 50
+          width: 50,
+          align:'center'
         },
         {
           prop: "name",
           label: "用户名",
-          width: 100
+          width: 100,
+          align:'center'
         },
         {
           prop: "status",
