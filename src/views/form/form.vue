@@ -31,19 +31,18 @@ export default {
   computed: {
     inLine_FormModel() {
       return inLine_FormModel;
-    },
-    inLine_FormData() {
-      return inLine_FormData;
-    },
+    }
   },
   methods:{
     validate (name) {
-      let formData=this.$refs['iforms'].getFormData();
-      if(formData){
-        console.log(formData)
-      }
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          this.$emit('submit', this.formData)
+        }
+      })
     },
     _reset (name) {
+      console.log(this.$refs[name])
       this.$refs[name].resetForm(name)
     },
     resetForm (name) {

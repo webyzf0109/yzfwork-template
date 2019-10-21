@@ -186,7 +186,7 @@
             </div>
           </el-form-item>
         </el-col>
-        <div style="float: left;">
+        <div :style="{'float': 'right','margin-right':'35px',}">
           <el-form-item label-width="20px">
             <slot name="iform-btns"></slot>
           </el-form-item>
@@ -433,7 +433,7 @@ export default {
      * 手动获取当前表单的数据
      */
     getFormData() {
-      if(this.validate){
+      if(this.validate()){
         return this.iformData;
       }else{
         return false;
@@ -502,10 +502,7 @@ export default {
     },
     clearObj(obj) {
       return JSON.parse(JSON.stringify(obj));
-    }
+    },
   }
 };
 </script>
-
-<style>
-</style>

@@ -27,6 +27,7 @@
   </div>
 </template>
 <script>
+import ajax from '@/api/axios'
 export default {
   name: "y-upload",
   data() {
@@ -133,7 +134,7 @@ export default {
         }
         let formdata = new FormData();
         formdata.append("file", files[i]);
-        this.$post(this.uploadUrl, formdata)
+        ajax.post(this.uploadUrl, formdata)
           .then(res => {
             e.target.value = "";
             let obj = { imgPath: res.imgurl };
