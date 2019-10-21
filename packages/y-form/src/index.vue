@@ -173,7 +173,7 @@
             <!-- /**图片 */ -->
             <div class="upload-box" v-else-if="item.elemType === 'upload'">
               <y-upload
-                :imgList="imgList"
+                :imgList="item.imgList"
                 :width="item.width"
                 :height="item.height"
                 :sizeWidth="item.sizeWidth"
@@ -181,7 +181,7 @@
                 :num="item.num"
                 :maxNum="item.maxNum"
                 :uploadUrl="item.uploadUrl"
-                @uploadChildSay="uploadChildSay"
+                @uploadChildSay="uploadChildSay($event,item.prop)"
               ></y-upload>
             </div>
           </el-form-item>
@@ -423,9 +423,11 @@ export default {
         this.$refs[this.formName + "searchTree"][0].resetTree();
       }
     },
-    uploadChildSay(val) {
+    uploadChildSay(val,prop) {
+      console.log(prop)
       if (val.length > 0) {
-        this.iformData.uploadUrl = val;
+        this.iformData[prop] = val;
+        console.log(this.iformData)
         this.$refs["upload"][0].clearValidate();
       }
     },

@@ -5,12 +5,13 @@
       ref="iforms"
       :formData="formData"
       :formModel="inLine_FormModel"
+      @uploadCallback="uploadCallback"
       formName="inLine"
       v-if="isReady"
     >
       <div slot="iform-btns">
-        <el-button type='primary' size='small' @click='validate("iforms")'>提交</el-button>
-        <el-button type='default' size='small' @click='_reset("iforms")'>重置</el-button>
+        <el-button type="primary" size="small" @click="validate('iforms')">提交</el-button>
+        <el-button type="default" size="small" @click="_reset('iforms')">重置</el-button>
       </div>
     </y-form>
   </div>
@@ -18,14 +19,13 @@
 <script>
 import { inLine_FormModel } from "./state";
 export default {
-  created() {
-  },
+  created() {},
   data() {
     return {
       formData: {
-        houseType:'1',
+        houseType: "1"
       },
-      isReady: true,
+      isReady: true
     };
   },
   computed: {
@@ -33,21 +33,24 @@ export default {
       return inLine_FormModel;
     }
   },
-  methods:{
-    validate (name) {
-      this.$refs[name].validate((valid) => {
+  methods: {
+    validate(name) {
+      this.$refs[name].validate(valid => {
         if (valid) {
-          this.$emit('submit', this.formData)
+          this.$emit("submit", this.formData);
         }
-      })
+      });
     },
-    _reset (name) {
-      console.log(this.$refs[name])
-      this.$refs[name].resetForm(name)
+    _reset(name) {
+      console.log(this.$refs[name]);
+      this.$refs[name].resetForm(name);
     },
-    resetForm (name) {
-      this.$refs[name].resetFields()
+    resetForm(name) {
+      this.$refs[name].resetFields();
     },
+    uploadCallback(val) {
+      console.log(this.formData)
+    }
   }
 };
 </script>

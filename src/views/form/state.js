@@ -146,14 +146,18 @@ module.exports = {
       prop: 'uploadUrl',
       elemType: 'upload',
       rules: ['required'],
-      ref:'upload',
-      width:100,
-      height:100,
-      sizeWidth:600,
-      sizeHeight:300,
-      num:2,
-      maxNum:5,
-      uploadUrl:'/v1/upload',
+      ref: 'upload',
+      width: 100,
+      height: 100,
+      sizeWidth: 600,
+      sizeHeight: 300,
+      num: 2,
+      maxNum: 5,
+      uploadUrl: '/v1/upload',
+      imgList: [{
+          imgPath: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=4198587036,2343077759&fm=26&gp=0.jpg'
+        }
+      ]
     }
   ],
   inLine_FormData: {}
