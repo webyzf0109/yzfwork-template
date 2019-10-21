@@ -25,7 +25,7 @@ export default {
       formData: {
         houseType:'1',
       },
-      isReady: true
+      isReady: true,
     };
   },
   computed: {
@@ -37,7 +37,7 @@ export default {
     validate (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$emit('submit', this.iformData)
+          this.$emit('submit', this.formData)
         }
       })
     },

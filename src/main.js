@@ -8,9 +8,13 @@ import plugins from '@/plugins/plugins';
 Vue.use(ElementUI);
 Vue.use(plugins)
 
+import ajax from './api/axios'
+Vue.prototype.$post = ajax.post;
+
+
 // 导入组件库
-import yzfwork from './../packages/y-table/index'
-// 注册组件库
+import yzfwork from './../packages/index'
+// // 注册组件库
 Vue.use(yzfwork)
 Vue.config.productionTip = false
 
