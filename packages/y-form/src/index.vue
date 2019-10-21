@@ -197,8 +197,23 @@
 </template>
 
 <script>
+import * as validators from "@/utils/validator";
+let events = {
+  update: null
+};
 export default {
   name: "y-form",
+  directives: {
+    update: {
+      bind(el, binding) {
+        events.update = new Event("update");
+        el.addEventListener("update", () => {}, false);
+      },
+      update(el, binding) {
+        el.dispatchEvent(events.update);
+      }
+    }
+  },
   data() {
     return {
       iformModel: this.formModel.length > 0 ? this.formModel : [],
@@ -307,13 +322,13 @@ export default {
         this._initRules();
       },
       deep: true
-    }
-    /* validateting: {
+    },
+     validateting: {
       handler (val) {
         !val && this.clearValidate()
       },
       deep: true
-    } */
+    } 
   },
   created() {
     this._initRules();
@@ -418,7 +433,11 @@ export default {
      * 手动获取当前表单的数据
      */
     getFormData() {
-      return this.iformData;
+      if(this.validate){
+        return this.iformData;
+      }else{
+        return false;
+      }
     },
     /*
      * 表单验证
@@ -435,6 +454,54 @@ export default {
      */
     clearValidate() {
       this.$refs[this.formName].clearValidate();
+    },
+
+    /**
+     * 核心逻辑
+     */
+    initRules(formModel) {
+      var rules = {};
+      if (!formModel.map) {
+        throw new Error("请传入数组");
+      } else {
+        formModel.map(item => {
+          if (item.visible !== false) {
+            if (item.group) {
+              item.childs.map(citem => {
+                this.makeValidator(citem, rules);
+              });
+            } else {
+              this.makeValidator(item, rules);
+            }
+          }
+        });
+      }
+      return rules;
+    },
+    makeValidator(item, rules) {
+      if (item.rules !== undefined && item.visible !== false) {
+        rules[item.prop] = [];
+        item.rules &&
+          item.rules.map(rule => {
+            if (typeof rule === "function") {
+              rules[item.prop].push({ validator: rule });
+            } else {
+              if (rule === "required") {
+                rules[item.prop].push({
+                  required: true,
+                  message: "此项为必填项"
+                });
+              } else {
+                rules[item.prop].push({
+                  validator: validators[rule + "Check"]
+                });
+              }
+            }
+          });
+      }
+    },
+    clearObj(obj) {
+      return JSON.parse(JSON.stringify(obj));
     }
   }
 };

@@ -1,5 +1,6 @@
 module.exports = {
-  inLine_FormModel: [{
+  inLine_FormModel: [
+    {
       elemType: 'select',
       label: '公司地址：',
       placeholder: '请选择...',
@@ -92,7 +93,6 @@ module.exports = {
       placeholder: '请输入价格信息',
       maxlength: 100,
       label: '价格信息：',
-
       prop: 'address',
       rules: ['required', 'bNumber'],
       labelWidth: '130px',
