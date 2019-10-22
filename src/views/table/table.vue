@@ -13,7 +13,7 @@
         <img class="img" :src="scope.scope.row.url" alt />
       </template>
       <template slot="operation2" slot-scope="scope">
-        <span>aaaa</span>
+        <span>slot测试内容2</span>
       </template>
     </y-table>
   </div>
@@ -52,7 +52,10 @@ export default {
       tableModel: [
         {
           type: "selection",
-          width: 50
+          width: 50,
+          selectable:()=>{
+            return 1
+          }
         },
         {
           label: "序号",

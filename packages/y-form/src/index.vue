@@ -424,10 +424,8 @@ export default {
       }
     },
     uploadChildSay(val,prop) {
-      console.log(prop)
       if (val.length > 0) {
         this.iformData[prop] = val;
-        console.log(this.iformData)
         this.$refs["upload"][0].clearValidate();
       }
     },

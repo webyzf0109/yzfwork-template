@@ -36,7 +36,6 @@
         :type="col.type"
         :width="col.width"
         :min-width="col.minWidth"
-        :selectable="col.selectable"
       ></el-table-column>
       <el-table-column
         :align="col.align"
@@ -45,7 +44,6 @@
         :width="col.width"
         :min-width="col.minWidth"
         :label="col.label"
-        :selectable="col.selectable"
       >
         <template slot-scope="scope">
           <el-radio v-model="curRowKey" :label="scope.row[rowKey]">&nbsp;</el-radio>
@@ -211,6 +209,7 @@ export default {
 
 <style lang="less"  scoped>
 .ytable {
+  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
   .el-table {
     font-size: 12px;
   }
