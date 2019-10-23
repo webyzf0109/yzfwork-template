@@ -40,7 +40,20 @@ export function phoneCheck (rule, val, callback) {
       return false
     }
     if (!reg.test(val)) {
-      callback(new Error('请输入正整数'))
+      callback(new Error('请输入正整数(不包含0)'))
+    } else {
+      callback()
+    }
+  }
+
+  export function intgerZeroCheck (rule, val, callback) {
+    let reg = /^([0-9]\d*|[0]{1,1})$/
+    if (!val) {
+      callback()
+      return false
+    }
+    if (!reg.test(val)) {
+      callback(new Error('请输入正整数(包含0)'))
     } else {
       callback()
     }
