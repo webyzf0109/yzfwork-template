@@ -153,7 +153,7 @@
               start-placeholder="开始日期"
               end-placeholder="结束日期"
               :picker-options="item.options"
-              :style="{width:item.width+'!important'}"
+              :style="{width:item.width+'px!important'}"
             ></el-date-picker>
             <div v-else-if="item.elemType === 'temp'" v-html="item.temp(iformData[item.prop])"></div>
             <el-switch
@@ -266,7 +266,7 @@ export default {
       }
     },
     width: {
-      type: String,
+      type: Number,
       default() {
         return 200;
       }
