@@ -2,6 +2,7 @@
   <div class="upload-box">
     <y-upload
       :imgList="imgList"
+      :imgName="imgName"
       :width="100"
       :height="100"
       :sizeWidth="200"
@@ -20,7 +21,8 @@ export default {
       uploadUrl: "/v1/upload",
       imgList: [
           
-      ]
+      ],
+      imgName:'imgPath',
     };
   },
   methods:{

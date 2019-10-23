@@ -42,7 +42,7 @@
               :disabled="item.disabled"
               :placeholder="item.placeholder?item.placeholder:'请输入'+item.label"
               @change="item.onChange($event, iformModel, iformData, index)"
-              :style="{width:item.width+'!important'}"
+              :style="{width:item.width+'px!important'}"
             >
               <template slot="prepend" v-if="item.slotPre != undefined ">{{item.slotPre}}</template>
               <template slot="append" v-if="item.slotApp != undefined ">{{item.slotApp}}</template>
@@ -57,7 +57,7 @@
               resize="both"
               :placeholder="item.placeholder?item.placeholder:'请输入'+item.label+'......'"
               @change="item.onChange($event, iformModel, iformData, index)"
-              :style="{width:item.width+'!important'}"
+              :style="{width:item.width+'px!important'}"
             ></el-input>
             <el-select
               :clearable="item.clearable === false ? false : true"
@@ -68,7 +68,7 @@
               :placeholder="item.placeholder?item.placeholder:'请选择'+item.label"
               @change="item.onChange($event, iformModel, iformData, index)"
               @focus="item.onFocus($event, iformModel, iformData, index)"
-              :style="{width:item.width+'!important'}"
+              :style="{width:item.width+'px!important'}"
             >
               <el-option
                 v-for=" (option, index) in item.options"
@@ -86,14 +86,14 @@
               :type="item.type"
               @change="item.onChange($event, iformModel, iformData, index)"
               :placeholder="item.placeholder?item.placeholder:item.label"
-              :style="{width:item.width+'!important'}"
+              :style="{width:item.width+'px!important'}"
             ></el-date-picker>
             <el-checkbox-group
               v-else-if=" item.elemType == 'checkbox' "
               v-model="iformData[item.prop]"
               :placeholder="item.placeholder?item.placeholder:item.label"
               @change="item.onChange($event, iformModel, iformData, index)"
-              :style="{width:item.width+'important'}"
+              :style="{width:item.width+'px!important'}"
             >
               <el-checkbox
                 v-for="(option, oindex) in item.options"
@@ -106,7 +106,7 @@
               v-model="iformData[item.prop]"
               :placeholder="item.placeholder?item.placeholder:item.label"
               @change="item.onChange($event, iformModel, iformData, index)"
-              :style="{width:item.width+'important'}"
+              :style="{width:item.width+'px!important'}"
             >
               <el-checkbox
                 v-for="(option, oindex) in item.options"
@@ -119,7 +119,7 @@
               v-model="iformData[item.prop]"
               size="small"
               @change="item.onChange($event, iformModel, iformData, index)"
-              :style="{width:item.width+'important'}"
+              :style="{width:item.width+'px!important'}"
             >
               <el-radio
                 v-for="(option, rindex) in item.options"
@@ -268,7 +268,7 @@ export default {
     width: {
       type: String,
       default() {
-        return "auto";
+        return 200;
       }
     },
     disabled: {
@@ -503,6 +503,6 @@ export default {
     clearObj(obj) {
       return JSON.parse(JSON.stringify(obj));
     },
-  }
+  },
 };
 </script>

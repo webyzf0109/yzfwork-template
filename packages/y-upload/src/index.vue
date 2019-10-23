@@ -9,25 +9,37 @@
     >
       <img :src="item.imgPath" alt />
       <div class="pop" :style="{'line-height':height+'px!important'}">
-        <i class="el-icon-zoom-in" :style="{'line-height':height+'px!important'}" @click="viewPhoto(index)"></i>
-        <i class="el-icon-delete" :style="{'line-height':height+'px!important'}" @click="remove(index)"></i>
+        <i
+          class="el-icon-zoom-in"
+          :style="{'line-height':height+'px!important'}"
+          @click="viewPhoto(index)"
+        ></i>
+        <i
+          class="el-icon-delete"
+          :style="{'line-height':height+'px!important'}"
+          @click="remove(index)"
+        ></i>
       </div>
     </div>
 
-    <div class="upload" :style="{width:width+'px',height:height+'px','line-height':height+'px!important'}" v-if="num==1?imgUrl.length<1:imgUrl.length< maxNum">
+    <div
+      class="upload"
+      :style="{width:width+'px',height:height+'px','line-height':height+'px!important'}"
+      v-if="num==1?imgUrl.length<1:imgUrl.length< maxNum"
+    >
       <i class="el-icon-plus" :style="{'line-height':height+'px!important'}"></i>
       <input :multiple="num!==1" type="file" @change="handle($event)" name="img" />
     </div>
     <section class="notice">建议尺寸：{{sizeWidth}}*{{sizeHeight}}px</section>
     <div class="elDialog">
       <el-dialog :visible.sync="dialogVisible" :close-on-click-modal="false" :append-to-body="true">
-        <img width="100%" v-if="imgList[idx]" :src="imgUrl[idx].imgPath" alt />
+        <img width="100%" v-if="imgList[idx]" :src="imgUrl[idx][imgName]" alt />
       </el-dialog>
     </div>
   </div>
 </template>
 <script>
-import ajax from '@/api/axios'
+import ajax from "@/api/axios";
 export default {
   name: "y-upload",
   data() {
@@ -42,6 +54,12 @@ export default {
       type: Array,
       default() {
         return [];
+      }
+    },
+    imgName: {
+      type: String,
+      default() {
+        return "imgPath";
       }
     },
     height: {
@@ -59,13 +77,13 @@ export default {
     sizeWidth: {
       type: Number,
       default() {
-        return 100;
+        return 60;
       }
     },
     sizeHeight: {
       type: Number,
       default() {
-        return 100;
+        return 60;
       }
     },
     num: {
@@ -74,7 +92,7 @@ export default {
         return 1;
       }
     },
-    maxNum:{
+    maxNum: {
       type: Number,
       default() {
         return 1;
@@ -134,7 +152,8 @@ export default {
         }
         let formdata = new FormData();
         formdata.append("file", files[i]);
-        ajax.post(this.uploadUrl, formdata)
+        ajax
+          .post(this.uploadUrl, formdata)
           .then(res => {
             e.target.value = "";
             let obj = { imgPath: res.imgurl };
