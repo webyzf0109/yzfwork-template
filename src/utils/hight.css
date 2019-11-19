@@ -1,0 +1,24 @@
+code{
+    font: 16px Consolas,Liberation Mono,Menlo,Courier,monospace;
+}
+.hljs {
+    display: block;
+    overflow-x: auto;
+    color: #ffffff;
+    padding: 0.5em;
+}
+
+.hljs-emphasis {
+    font-style: italic;
+}
+
+.hljs-strong {
+    font-weight: bold;
+}
+
+/**文档样式**/
+.ul-info{
+    font-size: 14px;
+    color: #5e6d82;
+    margin: 15px 0;
+}

@@ -10,6 +10,13 @@ Vue.use(ElementUI);
 import yzfwork from './../packages/index'
 // // 注册组件库
 Vue.use(yzfwork)
+
+/**代码高亮 */
+import Highlight from '@/utils/highlight';
+import 'highlight.js/styles/monokai-sublime.css';
+Vue.use(Highlight);
+
+
 Vue.config.productionTip = false
 
 new Vue({

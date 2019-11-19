@@ -12,6 +12,17 @@ module.exports = {
   css: {
     extract: false
   },
+  /**配置全局的less */
+  pluginOptions: {
+    "style-resources-loader": {
+      preProcessor: "less",
+      patterns: [
+        //这个是加上自己的路径，
+        //注意：试过不能使用别名路径
+        path.resolve(__dirname, "./src/assets/common/common.less")
+      ]
+    }
+  },
   // 扩展 webpack 配置，使 packages 加入编译
   chainWebpack: config => {
     config.module
@@ -30,7 +41,7 @@ module.exports = {
     host: 'localhost',
     port: 8000,
     // https: false,
-    // hotOnly: false,
+    hotOnly: true,
     // baseUrl: '/',
     // proxy: 'http://dev.routine',
     proxy: {

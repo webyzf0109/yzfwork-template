@@ -1,70 +1,42 @@
 <template>
-  <div class="form-box">
-    <div @click="show">出现</div>
-    <el-dialog title="商品管理" :visible.sync="diaIsShow" class="diaForm">
-      <y-form
-        :labelWidth="130"
-        ref="iforms"
-        :formData="formData"
-        :formModel="inLine_FormModel"
-        @uploadCallback="uploadCallback"
-        v-if="isReady"
-      >
-        <div slot="iform-btns">
-          <el-button type="primary" size="small" @click="validate('iforms')">提交</el-button>
-          <el-button type="default" size="small" @click="_reset('iforms')">重置</el-button>
-        </div>
-    </y-form>
-    </el-dialog>
+  <div class="table-box">
+    <h1>form表单</h1>
+    <ul class="ul-info">
+      <li>通过声明formData(数据)和formModel(表单模型),迅速构建出基于 "el-form" 的表单</li>
+      <li>可以使用 slot="iform-btns" 自定义按钮</li>
+    </ul>
+    <h3>示例代码</h3>
+    <pre v-highlightA>
+    <code>{{code}}</code>
+    <h3>表格属性</h3>
+    <y-table :tableData="tableData" :tableModel="tableModel" :border="false">
+    </y-table>
+    <h3>formModel属性</h3>
+    <y-table :tableData="tableData1" :tableModel="tableModel" :border="false">
+    </y-table>
+    <h3>formModel  elemType 种类</h3>
+    <y-table :tableData="tableData2" :tableModel="tableModel2" :border="false">
+    </y-table>
+</pre>
   </div>
 </template>
 <script>
-import { inLine_FormModel } from "./state";
+import demoCode from "./demo";
 export default {
-  created() {},
   data() {
     return {
-      diaIsShow:false,
-      isReady:false,
-      formData: {
-        houseType: "1",
-      },
+      code: demoCode.demoDefault(),
+      tableData: demoCode.demoTableData,
+      tableModel: demoCode.demoTableModel,
+      tableData1: demoCode.demoTableData1,
+      tableData2: demoCode.demoTableData2,
+      tableModel2: demoCode.demoTableModel2
     };
-  },
-  computed: {
-    inLine_FormModel() {
-      return inLine_FormModel;
-    }
-  },
-  methods: {
-    show(){
-      this.formData={};
-      this.isReady=true;
-      this.diaIsShow =true 
-    },
-    validate(name) {
-      this.$refs[name].validate(valid => {
-        console.log(111)
-        if (valid) {
-          console.log(222)
-          this.$emit("submit", this.formData);
-        }else{
-          console.log(333)
-        }
-      });
-    },
-    _reset(name) {
-      console.log(this.$refs[name]);
-      this.$refs[name].resetForm(name);
-      this.isReady=false;
-      this.diaIsShow =false 
-    },
-    uploadCallback(val) {
-      console.log(this.formData)
-    }
   }
 };
 </script>
-
 <style lang="less">
+.table-box {
+  width: calc(100%-60px);
+}
 </style>
