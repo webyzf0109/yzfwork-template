@@ -87,6 +87,12 @@ export default {
       activeIndex: "0",
       navList: [
         {
+          id: 0,
+          name: "如何使用",
+          parentId: 0,
+          path: "/use",
+        },
+        {
           id: 1,
           name: "button",
           parentId: 0,
@@ -112,7 +118,7 @@ export default {
         },
         {
           id: 5,
-          name: "color",
+          name: "全局颜色",
           parentId: 0,
           path: "/color"
         },

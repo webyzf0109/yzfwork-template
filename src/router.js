@@ -6,6 +6,7 @@ import form from './views/form/form.vue'
 import upload from './views/upload/upload.vue'
 import button from './views/button/button.vue'
 import color from './views/color/color.vue'
+import use from './views/use/use.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -16,7 +17,13 @@ export default new Router({
       path: '/',
       name: 'layout',
       component: layout,
+      redirect:'/button',
       children: [
+        {
+          path: '/use',
+          name: 'use',
+          component: use
+        },
         {
           path: '/table',
           name: 'table',
