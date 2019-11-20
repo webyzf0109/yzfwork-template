@@ -3,8 +3,20 @@
   <div class="color-box">
     <h1>全局color</h1>
     <ul class="ul-info">
-      <li>全局定义颜色,为项目颜色一致、统一提供方便</li>
+      <li>全局定义颜色,为项目颜色一致、统一提供方便,下面展示的是项目常用的两类颜色</li>
     </ul>
+    <h3>全局配置</h3>
+    <ul class="ul-info">
+      <li>下载两个插件  vue-cli-plugin-style-resources-loader  和   style-resources-loader</li>
+      <li>在vue.config.js文件全局配置</li>
+      <li>配置完成后下载已有的color.less文件并放置到相对应的文件目录 <y-button> <a href="https://qiniu.yyyzf.xyz/color.less">下载链接</a> </y-button> </li>
+    </ul>
+    <pre v-highlightA>
+      <code>
+        {{configCode}}
+      </code>
+    </pre>
+    
     <!-- /**按钮颜色展示 */ -->
     <section>
       <h3>按钮颜色</h3>
@@ -52,7 +64,8 @@ export default {
     //这里存放数据
     return {
       buttonCode: demoCode.buttonCode,
-      fontCode:demoCode.fontCode
+      fontCode:demoCode.fontCode,
+      configCode:demoCode.configCode
     };
   },
   //监听属性 类似于data概念
@@ -60,7 +73,8 @@ export default {
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
@@ -77,6 +91,10 @@ export default {
 <style lang='less' scoped>
 //@import url(); 引入公共css类
 .color-box {
+  a{
+    color: #fff;
+    text-decoration: none;
+  }
   .button {
     width: 80px;
     height: 30px;

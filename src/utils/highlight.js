@@ -13,7 +13,7 @@ Highlight.install = function (Vue, options) {
             for (let i = 0; i < blocks.length; i++) {
                 const item = blocks[i];
                 Hljs.highlightBlock(item);
-            };
+            }
         }
     });
  
@@ -24,7 +24,7 @@ Highlight.install = function (Vue, options) {
             for (let i = 0; i < blocks.length; i++) {
                 const item = blocks[i];
                 Hljs.highlightBlock(item);
-            };
+            }
         }
     });
  
