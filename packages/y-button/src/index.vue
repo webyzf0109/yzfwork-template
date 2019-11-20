@@ -119,10 +119,10 @@ export default {
 <style lang='less' >
 //@import url(); 引入公共css类
 /**消除默认hover */
-.y-button:hover {
-  background: none !important;
-  border-color: none !important;
-}
+// .y-button:hover {
+//   background: none !important;
+//   border-color: none !important;
+// }
 /**深蓝色 */
 .y-button-blue {
   background: @button-blue !important;
