@@ -18,7 +18,17 @@
           @open="handleOpen"
           :unique-opened="true"
         >
-          <el-submenu
+         
+          <el-menu-item
+            @click="handleChildrenClick(item)"
+            v-for="(item,index) in navList"
+            v-if="!item.childList || item.childList.length==0"
+            :index="item.id.toString()"
+            :key="item+index"
+          >
+            <span slot="title">{{item.name}}</span>
+          </el-menu-item>
+           <el-submenu
             :index="item.id.toString()"
             v-if="item.childList && item.childList.length>0"
             v-for="(item,index) in navList"
@@ -36,15 +46,6 @@
               >{{childItem.name}}</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item
-            @click="handleChildrenClick(item)"
-            v-for="(item,index) in navList"
-            v-if="!item.childList || item.childList.length==0"
-            :index="item.id.toString()"
-            :key="item+index"
-          >
-            <span slot="title">{{item.name}}</span>
-          </el-menu-item>
         </el-menu>
       </el-aside>
       <el-main class="right-box">
@@ -90,13 +91,13 @@ export default {
           id: 0,
           name: "如何使用",
           parentId: 0,
-          path: "/use",
+          path: "/use"
         },
         {
           id: 1,
           name: "button",
           parentId: 0,
-          path: "/button",
+          path: "/button"
         },
         {
           id: 2,
@@ -122,7 +123,15 @@ export default {
           parentId: 0,
           path: "/color"
         },
-
+        {
+          id: 6,
+          name: "编辑器",
+          parentId: 0,
+          childList: [
+            { id: 7, name: "vueHtml5", path: "/vueHtmlEditor",parentId:6, },
+            { id: 8, name: "ueEditor", path: "/ueEditor",parentId:6, }
+          ]
+        }
       ]
     };
   },

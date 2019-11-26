@@ -7,6 +7,9 @@ import upload from './views/upload/upload.vue'
 import button from './views/button/button.vue'
 import color from './views/color/color.vue'
 import use from './views/use/use.vue'
+import ueEditor from './views/editor/ueEditor.vue'
+import vueHtmlEditor from './views/editor/vueHtmlEditor.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -17,7 +20,7 @@ export default new Router({
       path: '/',
       name: 'layout',
       component: layout,
-      redirect:'/use',
+      redirect: '/use',
       children: [
         {
           path: '/use',
@@ -49,6 +52,16 @@ export default new Router({
           name: 'color',
           component: color
         },
+        {
+          path: '/ueEditor',
+          name: 'ueEditor',
+          component: ueEditor
+        },
+        {
+          path: '/vueHtmlEditor',
+          name: 'vueHtmlEditor',
+          component: vueHtmlEditor
+        }
       ]
     },
 

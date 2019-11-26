@@ -1,5 +1,6 @@
 const path = require('path');
 module.exports = {
+  publicPath: './',
   pages: {
     index: {
       entry: 'src/main.js',
@@ -36,6 +37,10 @@ module.exports = {
         // 修改它的选项...
         return options
       })
+      config.resolve.alias
+            .set('@', path.resolve(__dirname, './src'))
+            .set('&', path.resolve(__dirname, './static'))
+            .set('vue$', 'vue/dist/vue.esm.js', )
   },
   devServer: {
     host: 'localhost',
