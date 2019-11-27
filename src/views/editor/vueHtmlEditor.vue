@@ -7,25 +7,37 @@
     </ul>
     <h1>效果展示</h1>
     <div style="margin-top:20px;">
-      <y-vueEditor :content="content" :width="500" :height="300" @updateData="updateData"></y-vueEditor>
+      <y-vueEditor
+        :content="content"
+        :uploadUrl="uploadUrl"
+        :width="500"
+        :height="300"
+        :token="token"
+        @updateData="updateData"
+      ></y-vueEditor>
     </div>
-    
     <pre v-highlightA>
       <code>
           {{code}}
       </code>
     </pre>
+    <y-table :tableData="demo_tableData" :tableModel="demo_tableModel"></y-table>
   </div>
 </template>
 
 <script>
+import demoCode from './demo';
 export default {
   components: {},
   data() {
     //这里存放数据
     return {
+      uploadUrl: process.env.VUE_APP_manage_uploadUrl,
+      token:"Bearer " + localStorage.getItem("token"),
       content: "这是vueEditor组件",
-      code:`<y-vueEditor :content="content" :width="500" :height="300" @updateData="updateData"></y-vueEditor>`
+      code: demoCode.code,
+      demo_tableData: demoCode.demo_tableData,
+      demo_tableModel: demoCode.demo_tableModel
     };
   },
   //监听属性 类似于data概念
@@ -34,8 +46,8 @@ export default {
   watch: {},
   //方法集合
   methods: {
-    updateData(str){
-      console.log(str)
+    updateData(str) {
+      console.log(str);
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）

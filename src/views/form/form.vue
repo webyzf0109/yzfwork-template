@@ -5,7 +5,20 @@
       <li>通过声明formData(数据)和formModel(表单模型),迅速构建出基于 "el-form" 的表单</li>
       <li>可以使用 slot="iform-btns" 自定义按钮</li>
     </ul>
-    <h3>示例代码</h3>
+    <!-- /**示例一 */ -->
+    <h3>示例:</h3>
+    <y-form
+      :labelWidth="130"
+      ref="iforms"
+      :formData="formData"
+      :formModel="formModel"
+      @uploadCallback="uploadCallback"
+    >
+      <div slot="iform-btns">
+        <el-button type="primary" size="small" @click="submit('iforms')">提交</el-button>
+        <el-button type="default" size="small" @click="reset('iforms')">重置</el-button>
+      </div>
+    </y-form>
     <pre v-highlightA>
     <code>{{code}}</code>
     <h3>表格属性</h3>
@@ -22,16 +35,32 @@
 </template>
 <script>
 import demoCode from "./demo";
+import formData from "./form";
 export default {
   data() {
     return {
       code: demoCode.demoDefault(),
+      formModel: formData.formModel,
+      formData: {},
       tableData: demoCode.demoTableData,
       tableModel: demoCode.demoTableModel,
       tableData1: demoCode.demoTableData1,
       tableData2: demoCode.demoTableData2,
       tableModel2: demoCode.demoTableModel2
     };
+  },
+  methods: {
+    /**上传图片回调 */
+    uploadCallback() {},
+    /**提交 */
+    submit(name) {
+      let result = this.$refs[name].getFormData();
+      console.log(result);
+    },
+    /**重置 */
+    reset(name) {
+      this.$refs[name].resetForm();
+    }
   }
 };
 </script>

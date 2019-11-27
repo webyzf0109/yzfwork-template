@@ -30,7 +30,7 @@
             v-if="item.visible(iformData, iformModel, index)"
             :class="item.classes"
             :ref="item.ref"
-            :label-width="!item.labelWidth ? labelWidth + 'px' : item.labelWidth"
+            :label-width="item.labelWidth ? item.labelWidth + 'px' : labelWidth+'px' "
           >
             <el-input
               class="cusInput"
@@ -40,6 +40,7 @@
               :maxlength="item.maxlength"
               :readonly="item.readonly"
               :disabled="item.disabled"
+              :show-word-limit="item.showWordLimit"
               :placeholder="item.placeholder?item.placeholder:'请输入'+item.label"
               @change="item.onChange($event, iformModel, iformData, index)"
               :style="{width:item.width+'px!important'}"
@@ -54,6 +55,7 @@
               :rows="item.rows"
               :maxlength="item.maxlength"
               :readonly="item.readonly"
+              :show-word-limit="item.showWordLimit"
               resize="both"
               :placeholder="item.placeholder?item.placeholder:'请输入'+item.label+'......'"
               @change="item.onChange($event, iformModel, iformData, index)"
@@ -173,6 +175,7 @@
             <!-- /**图片 */ -->
             <div class="upload-box" v-else-if="item.elemType === 'upload'">
               <y-upload
+                ref="uploads"
                 :imgList="item.imgList"
                 :width="item.width"
                 :height="item.height"
@@ -186,7 +189,7 @@
             </div>
           </el-form-item>
         </el-col>
-        <div :style="{'float': 'right','margin-right':'35px',}">
+        <div :style="{'float': direction}">
           <el-form-item label-width="20px">
             <slot name="iform-btns"></slot>
           </el-form-item>
@@ -288,6 +291,12 @@ export default {
       default() {
         return true;
       }
+    },
+    direction: {
+      type: String,
+      default() {
+        return "left";
+      }
     }
   },
   watch: {
@@ -323,12 +332,12 @@ export default {
       },
       deep: true
     },
-     validateting: {
-      handler (val) {
-        !val && this.clearValidate()
+    validateting: {
+      handler(val) {
+        !val && this.clearValidate();
       },
       deep: true
-    } 
+    }
   },
   created() {
     this._initRules();
@@ -419,11 +428,21 @@ export default {
      */
     resetForm() {
       this.$refs[this.formName].resetFields();
+      if (this.iformData.url && this.iformData.url.length > 0) {
+        this.iformModel.forEach(item => {
+          if (item.elemType == "upload") {
+            item.imgList = [];
+          }
+        });
+        this.iformData.url=[];
+        this.$refs["upload"][0].clearValidate();
+      }
+
       if (this.$refs[this.formName + "searchTree"]) {
         this.$refs[this.formName + "searchTree"][0].resetTree();
       }
     },
-    uploadChildSay(val,prop) {
+    uploadChildSay(val, prop) {
       if (val.length > 0) {
         this.iformData[prop] = val;
         this.$refs["upload"][0].clearValidate();
@@ -433,9 +452,9 @@ export default {
      * 手动获取当前表单的数据
      */
     getFormData() {
-      if(this.validate()){
+      if (this.validate()) {
         return this.iformData;
-      }else{
+      } else {
         return false;
       }
     },
@@ -502,7 +521,7 @@ export default {
     },
     clearObj(obj) {
       return JSON.parse(JSON.stringify(obj));
-    },
-  },
+    }
+  }
 };
 </script>

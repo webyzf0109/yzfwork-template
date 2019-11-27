@@ -7,16 +7,21 @@
     </ul>
     <h3>全局配置</h3>
     <ul class="ul-info">
-      <li>下载两个插件  vue-cli-plugin-style-resources-loader  和   style-resources-loader</li>
+      <li>下载两个插件 vue-cli-plugin-style-resources-loader 和 style-resources-loader</li>
       <li>在vue.config.js文件全局配置</li>
-      <li>配置完成后下载已有的color.less文件并放置到相对应的文件目录 <y-button> <a href="https://qiniu.yyyzf.xyz/color.less">下载链接</a> </y-button> </li>
+      <li>
+        配置完成后下载已有的color.less文件并放置到相对应的文件目录
+        <y-button>
+          <a href="https://qiniu.yyyzf.xyz/color.less">下载链接</a>
+        </y-button>
+      </li>
     </ul>
     <pre v-highlightA>
       <code>
         {{configCode}}
       </code>
     </pre>
-    
+
     <!-- /**按钮颜色展示 */ -->
     <section>
       <h3>按钮颜色</h3>
@@ -29,6 +34,10 @@
       <div class="button button-blue-hover"></div>
       <div class="button button-orange"></div>
       <div class="button button-orange-hover"></div>
+      <div class="button button-cheng"></div>
+      <div class="button button-cheng-hover"></div>
+      <div class="button button-green"></div>
+      <div class="button button-green-hover"></div>
       <pre v-highlightA>
       <code>
         {{buttonCode}}
@@ -47,6 +56,8 @@
       <div class="font font-gray-three">3号灰</div>
       <div class="font font-white">白色</div>
       <div class="font font-black">黑色</div>
+      <div class="font font-cheng">橙色</div>
+      <div class="font font-green">绿色</div>
       <pre v-highlightA>
       <code>
         {{fontCode}}
@@ -64,8 +75,8 @@ export default {
     //这里存放数据
     return {
       buttonCode: demoCode.buttonCode,
-      fontCode:demoCode.fontCode,
-      configCode:demoCode.configCode
+      fontCode: demoCode.fontCode,
+      configCode: demoCode.configCode
     };
   },
   //监听属性 类似于data概念
@@ -73,8 +84,7 @@ export default {
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {
-  },
+  methods: {},
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
@@ -91,7 +101,7 @@ export default {
 <style lang='less' scoped>
 //@import url(); 引入公共css类
 .color-box {
-  a{
+  a {
     color: #fff;
     text-decoration: none;
   }
@@ -119,10 +129,22 @@ export default {
   .button-orange-hover {
     background: @button-orange-hover;
   }
+  .button-cheng {
+    background: @button-cheng;
+  }
+  .button-cheng-hover {
+    background: @button-cheng-hover;
+  }
+  .button-green {
+    background: @button-green;
+  }
+  .button-green-hover {
+    background: @button-green-hover;
+  }
 
-  .font{
-      display: inline-block;
-      margin-right: 20px;
+  .font {
+    display: inline-block;
+    margin-right: 20px;
   }
   .font-blue {
     color: @font-blue;
@@ -141,6 +163,12 @@ export default {
   }
   .font-black {
     color: @font-black;
+  }
+  .font-cheng {
+    color: @font-cheng;
+  }
+  .font-green {
+    color: @font-green;
   }
 }
 </style>

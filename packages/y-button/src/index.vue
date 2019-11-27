@@ -89,7 +89,7 @@ export default {
     color: {
       type: [String],
       default() {
-        return "#ffffff";
+        return "";
       }
     }
   },
@@ -152,5 +152,26 @@ export default {
 .y-button-red:hover {
   background: @button-red-hover !important;
   border-color: @button-red-hover !important;
+}
+
+/**橙色 */
+.y-button-cheng {
+  background: @button-cheng !important;
+  border-color: @button-cheng !important;
+}
+.y-button-cheng:focus,
+.y-button-cheng:hover {
+  background: @button-cheng-hover !important;
+  border-color: @button-cheng-hover !important;
+}
+/**绿色 */
+.y-button-green {
+  background: @button-green !important;
+  border-color: @button-green !important;
+}
+.y-button-green:focus,
+.y-button-green:hover {
+  background: @button-green-hover !important;
+  border-color: @button-green-hover !important;
 }
 </style>
