@@ -99,6 +99,7 @@ class formData {
                 sizeHeight: 750,
                 num: 1,
                 maxNum: 1,
+                sizeShow:false,
                 uploadUrl: '/v1/upload',
                 uploadUrl:'/ikucun-service/web/distributionExtract/uploadImg',
                 imgList: []

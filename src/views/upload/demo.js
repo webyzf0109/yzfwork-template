@@ -11,6 +11,7 @@ const demoCode = {
       :height="100"
       :sizeWidth="200"
       :sizeHeight="200"
+      :sizeShow="sizeShow"
       :num="1"
       :maxNum="5"
       :uploadUrl="uploadUrl"

@@ -30,7 +30,7 @@
       <i class="el-icon-plus" :style="{'line-height':height+'px!important'}"></i>
       <input :multiple="num!==1" type="file" @change="handle($event)" name="img" />
     </div>
-    <section class="notice">建议尺寸：{{sizeWidth}}*{{sizeHeight}}px</section>
+    <section class="notice" v-if="sizeShow">建议尺寸：{{sizeWidth}}*{{sizeHeight}}px</section>
     <div class="elDialog">
       <el-dialog :visible.sync="dialogVisible" :close-on-click-modal="false" :append-to-body="true">
         <img width="100%" v-if="imgList[idx]" :src="imgUrl[idx][imgName]" alt />
@@ -103,10 +103,17 @@ export default {
       default() {
         return 1;
       }
+    },
+    sizeShow: {
+      type: Boolean,
+      default() {
+        return true;
+      }
     }
   },
   created() {
     this.imgUrl = this.imgList;
+    console.log(this.sizeShow,'sizeShow')
     // this.imgUrl=['https://ufund-1255803266.cos.ap-shanghai.myqcloud.com/67bfd9d51df648daac7679e843e07571.jpg','https://ufund-1255803266.cos.ap-shanghai.myqcloud.com/67bfd9d51df648daac7679e843e07571.jpg','https://ufund-1255803266.cos.ap-shanghai.myqcloud.com/67bfd9d51df648daac7679e843e07571.jpg']
   },
   watch: {
@@ -156,7 +163,7 @@ export default {
           .post(this.uploadUrl, formdata)
           .then(res => {
             e.target.value = "";
-            let obj = { imgPath: res.imgurl };
+            let obj = { imgPath: res.imgurl || res.data };
             this.imgUrl.push(obj);
             this.$emit("uploadChildSay", this.imgUrl);
             if (this.imgUrl.length == files.length) {

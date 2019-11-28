@@ -181,6 +181,7 @@
                 :height="item.height"
                 :sizeWidth="item.sizeWidth"
                 :sizeHeight="item.sizeHeight"
+                :sizeShow="item.sizeShow"
                 :num="item.num"
                 :maxNum="item.maxNum"
                 :uploadUrl="item.uploadUrl"
