@@ -66,7 +66,14 @@ const demoCode = {
             defaultValue: "60",
             isSure: `false`
         },
-
+        {
+            name: "sizeShow",
+            description: "是否显示建议尺寸",
+            type: "Boolean",
+            value: "true | false",
+            defaultValue: "true",
+            isSure: `false`
+        },
         {
             name: "uploadUrl",
             description: "图片上传地址",

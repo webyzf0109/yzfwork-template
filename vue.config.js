@@ -57,7 +57,15 @@ module.exports = {
         pathRewrite: {
           '^/v1': '/v1'
         }
-      }
+      },
+      '/ikucun-service': {
+        target: 'http://dev.routine',
+        changeOrigin: true,
+        // ws: true,
+        pathRewrite: {
+            '^/ikucun-service': '/ikucun-service'
+        }
+    },
     }
     // before: app => {}
   },

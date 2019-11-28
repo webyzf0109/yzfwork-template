@@ -100,6 +100,7 @@ class formData {
                 num: 1,
                 maxNum: 1,
                 uploadUrl: '/v1/upload',
+                uploadUrl:'/ikucun-service/web/distributionExtract/uploadImg',
                 imgList: []
             }
 
