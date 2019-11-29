@@ -113,7 +113,6 @@ export default {
   },
   created() {
     this.imgUrl = this.imgList;
-    console.log(this.sizeShow,'sizeShow')
     // this.imgUrl=['https://ufund-1255803266.cos.ap-shanghai.myqcloud.com/67bfd9d51df648daac7679e843e07571.jpg','https://ufund-1255803266.cos.ap-shanghai.myqcloud.com/67bfd9d51df648daac7679e843e07571.jpg','https://ufund-1255803266.cos.ap-shanghai.myqcloud.com/67bfd9d51df648daac7679e843e07571.jpg']
   },
   watch: {
