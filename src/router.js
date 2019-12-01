@@ -9,6 +9,7 @@ import color from './views/color/color.vue'
 import use from './views/use/use.vue'
 import ueEditor from './views/editor/ueEditor.vue'
 import vueHtmlEditor from './views/editor/vueHtmlEditor.vue'
+import newLayout from './views/newLayout/newLayout.vue'
 
 Vue.use(Router)
 
@@ -16,6 +17,11 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    {
+      path:'/newLayout',
+      name:'newLayout',
+      component:newLayout
+    },
     {
       path: '/',
       name: 'layout',
