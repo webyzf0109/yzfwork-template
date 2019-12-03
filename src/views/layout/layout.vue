@@ -18,7 +18,6 @@
           @open="handleOpen"
           :unique-opened="true"
         >
-         
           <el-menu-item
             @click="handleChildrenClick(item)"
             v-for="(item,index) in navList"
@@ -28,7 +27,7 @@
           >
             <span slot="title">{{item.name}}</span>
           </el-menu-item>
-           <el-submenu
+          <el-submenu
             :index="item.id.toString()"
             v-if="item.childList && item.childList.length>0"
             v-for="(item,index) in navList"
@@ -128,9 +127,21 @@ export default {
           name: "编辑器",
           parentId: 0,
           childList: [
-            { id: 7, name: "vueHtml5", path: "/vueHtmlEditor",parentId:6, },
-            { id: 8, name: "ueEditor", path: "/ueEditor",parentId:6, }
+            { id: 7, name: "vueHtml5", path: "/vueHtmlEditor", parentId: 6 },
+            { id: 8, name: "ueEditor", path: "/ueEditor", parentId: 6 }
           ]
+        },
+        {
+          id: 9,
+          name: "面包屑导航",
+          parentId: 0,
+          path: "/breadCrumb"
+        },
+        {
+          id: 10,
+          name: "分页",
+          parentId: 0,
+          path: "/page"
         }
       ]
     };

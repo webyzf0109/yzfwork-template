@@ -609,8 +609,6 @@ export default {
         this.hasTwoLevel = false;
       }
     },
-    handleOpen() {},
-    handleClose() {}
   }
 };
 </script>

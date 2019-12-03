@@ -10,7 +10,8 @@ import use from './views/use/use.vue'
 import ueEditor from './views/editor/ueEditor.vue'
 import vueHtmlEditor from './views/editor/vueHtmlEditor.vue'
 import newLayout from './views/newLayout/newLayout.vue'
-
+import breadCrumb from './views/breadCrumb/breadCrumb.vue'
+import page from './views/page/page.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -67,6 +68,16 @@ export default new Router({
           path: '/vueHtmlEditor',
           name: 'vueHtmlEditor',
           component: vueHtmlEditor
+        },
+        {
+          path: '/breadCrumb',
+          name: 'breadCrumb',
+          component: breadCrumb
+        },
+        {
+          path:'/page',
+          name:'page',
+          component:page
         }
       ]
     },

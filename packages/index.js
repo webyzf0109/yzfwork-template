@@ -4,13 +4,17 @@ import yForm from './y-form'
 import yUpload from './y-upload'
 import yButton from './y-button'
 import yVueEditor from './y-vueEditor'
+import yBread from './y-bread'
+import yPage from './y-page'
 // 存储组件列表
 const components = [
  yTable,
  yForm,
  yUpload,
  yButton,
- yVueEditor
+ yVueEditor,
+ yBread,
+ yPage
 ]
 // 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册
 const install = function (Vue) {
@@ -32,5 +36,7 @@ export default {
  yForm,
  yUpload,
  yButton,
- yVueEditor
+ yVueEditor,
+ yBread,
+ yPage
 }

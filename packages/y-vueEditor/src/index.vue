@@ -1,6 +1,6 @@
 <!-- yVueEditor -->
 <template>
-  <div class="yVueEditor" :style="{width:width+'px',height:(height+40)+'px'}">
+  <div class="y-VueEditor" :style="{width:width+'px',height:(height+40)+'px'}">
     <vue-html5-editor
       :content="content"
       :uploadUrl="uploadUrl"

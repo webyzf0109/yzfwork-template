@@ -1,5 +1,5 @@
 <template>
-  <div class="uploadConfig" :style="{height:height+25+'px'}">
+  <div class="y-upload" :style="{height:height+25+'px'}">
     <div
       class="view"
       v-if="imgUrl.length>0"
@@ -179,7 +179,7 @@ export default {
 </script>
 <style lang="less">
 @font-blue: #409eff;
-.uploadConfig {
+.y-upload {
   width: auto;
   display: flex;
   position: relative;

@@ -1,5 +1,5 @@
 <template>
-  <div class="iform">
+  <div class="y-iform">
     <div class="formHeader">
       <slot name="header"></slot>
     </div>
