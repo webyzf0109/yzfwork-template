@@ -6,8 +6,10 @@
       highlight-current-row
       :span-method="merge"
       :stripe="stripe"
+      :default-sort="defaultSort"
       @current-change="handleCurrentChange"
       @selection-change="selectChangeHandler"
+      @sort-change="sortChange"
       :style="{width: tableWidth+'px'}"
     >
       <el-table-column
@@ -18,6 +20,7 @@
         :key="col.prop"
         :width="col.width"
         :min-width="col.minWidth"
+        :sortable="col.sortable"
         :formatter="col.formatter"
         v-if="col.render === undefined && col.type === undefined && col.slot === undefined"
       ></el-table-column>
@@ -137,6 +140,12 @@ export default {
         return "100%";
       }
     },
+    defaultSort: {
+      type: [Object],
+      default() {
+        return {};
+      }
+    },
     stripe: {
       type: Boolean,
       default() {
@@ -191,6 +200,9 @@ export default {
       }
       this.$emit("selectionChange", selections);
     },
+    sortChange(column, prop, order ){
+      this.$emit("sortChange", column, prop, order );
+    },
     // 单选发生变化的时候
     handleCurrentChange(row) {
       if (!row) {
@@ -209,7 +221,8 @@ export default {
 
 <style lang="less"  scoped>
 .y-table {
-  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, SimSun, sans-serif;
   .el-table {
     font-size: 12px;
   }

@@ -2,7 +2,7 @@ import { GMTToStr } from '../../utils/dateFormat.js'
 const demoCode = {
   demoDefault: function () {
     return `  //html部分
-  <y-table :tableData="demo_tableData" :tableModel="demo_tableModel">
+  <y-table :tableData="demo_tableData" :tableModel="demo_tableModel" :defaultSort="{prop: 'create_time', order: 'descending'}" @sortChange="sortChange">
     <template slot="operation1" slot-scope="scope">
       <el-tag>{{scope.scope.row.Category.category_name}}</el-tag>
     </template>
@@ -29,10 +29,10 @@ const demoCode = {
         category_name: "ins风插件植脂2"
       },
       category_type: 1,
-      create_time: "2019-11-18T08:20:02.000Z",
+      create_time: "2019-11-19T08:20:02.000Z",
       delete_time: null,
       id: 21,
-      name: "测试商品002",
+      name: "测试商品0020",
       update_time: "2019-11-18T08:20:02.000Z",
       url: "http://qiniu.yyyzf.xyz/2a91177135be5.jpg",
     },
@@ -63,8 +63,10 @@ const demoCode = {
       label:'创建时间',
       prop: "create_time",
       minWidth:100,
+      sortable:true,
       //GMTToStr是定义好的一个时间转换函数 参数(转换格式，时间戳)
-      formatter(row, col, colVal) { return  GMTToStr('yyyy-MM-dd hh:mm:ss', new Date(colVal))   }  
+      formatter(row, col, colVal) { return  GMTToStr('yyyy-MM-dd hh:mm:ss', new Date(colVal))   },
+
     },
     {
       label: "操作",
@@ -193,6 +195,22 @@ const demoCode = {
       type: "Object | Array",
       value: "一般用于编辑内容 （修改/删除等）",
       defaultValue: '——',
+      isSure: 'false'
+    },
+    {
+      name: "defaultSort",
+      description: '针对某一列排序的默认排序设置',
+      type: "Object",
+      value: "例如：{prop: 'create_time', order: 'descending'}",
+      defaultValue: 'order的值油两个：descending/ascending  默认值是ascending',
+      isSure: 'false'
+    },
+    {
+      name: "sortChange",
+      description: '针对某一列排序的默认排序设置的事件监听',
+      type: "Function",
+      value: "column, prop, order ",
+      defaultValue: 'order的值油两个：descending/ascending  默认值是ascending',
       isSure: 'false'
     }
   ],
@@ -331,6 +349,14 @@ const demoCode = {
       defaultValue: "——",
       isSure: `false`
     },
+    {
+      name: "sortable",
+      description: "列排序",
+      type: "Boolean",
+      value: `true | false`,
+      defaultValue: "——",
+      isSure: `false`
+    }
   ],
   demo_tableData: [
     {
@@ -350,7 +376,7 @@ const demoCode = {
         category_name: "ins风插件植脂2"
       },
       category_type: 1,
-      create_time: "2019-11-18T08:20:02.000Z",
+      create_time: "2019-11-19T08:20:02.000Z",
       delete_time: null,
       id: 21,
       name: "测试商品002",
@@ -363,7 +389,7 @@ const demoCode = {
       type: "index",
       label: "序号",
       width: 50,
-      align:'center'
+      align: 'center'
     },
     {
       slot: "operation1",
@@ -383,6 +409,7 @@ const demoCode = {
     {
       label: '创建时间',
       prop: "create_time",
+      sortable: true,
       minWidth: 100,
       formatter(row, col, colVal) { return GMTToStr('yyyy-MM-dd hh:mm:ss', new Date(colVal)) }
     },

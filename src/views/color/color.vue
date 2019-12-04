@@ -12,7 +12,7 @@
       <li>
         配置完成后下载已有的color.less文件并放置到相对应的文件目录
         <y-button>
-          <a href="https://qiniu.yyyzf.xyz/color.less">下载链接</a>
+          <a href="https://qiniu.yyyzf.xyz/common.0.1.28.less" download="">下载链接</a>
         </y-button>
       </li>
     </ul>

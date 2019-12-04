@@ -8,7 +8,12 @@
       <li>html代码量很少,方便阅读,js数据是动态获取,model模型可以提出到js。这样写的好处是 便于后期维护以及样式的统一性、一致性，最主要的还是提升效率</li>
     </ul>
     <h3>示例</h3>
-    <y-table :tableData="demo_tableData" :tableModel="demo_tableModel">
+    <y-table
+      :tableData="demo_tableData"
+      :tableModel="demo_tableModel"
+      :defaultSort="{prop: 'create_time', order: 'descending'}"
+      @sortChange="sortChange"
+    >
       <template slot="operation1" slot-scope="scope">
         <el-tag>{{scope.scope.row.Category.category_name}}</el-tag>
       </template>
@@ -35,17 +40,22 @@ export default {
       tableModel: demoCode.demoTableModel,
       tableData2: demoCode.demoTableData2,
       tableModel2: demoCode.demoTableModel2,
-      demo_tableData:demoCode.demo_tableData,
-      demo_tableModel:demoCode.demo_tableModel,
+      demo_tableData: demoCode.demo_tableData,
+      demo_tableModel: demoCode.demo_tableModel
     };
+  },
+  methods:{
+    sortChange(val){
+      console.log(val,'val')
+    }
   }
 };
 </script>
 <style lang="less">
 .table-box {
   width: calc(100%-60px);
-  h3{
-    margin:20px 0;
+  h3 {
+    margin: 20px 0;
   }
 }
 </style>
