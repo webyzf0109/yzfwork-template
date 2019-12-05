@@ -1,6 +1,6 @@
 {
   "name": "yzfwork",
-  "version": "0.1.31",
+  "version": "0.1.39",
   "description": "工作常用组件",
   "main": "lib/yzfwork.umd.min.js",
   "keyword": "yzf-template yzf template",
@@ -22,8 +22,7 @@
     "vue": "^2.6.10",
     "vue-html5-editor": "^1.1.1",
     "vue-router": "^3.0.3",
-    "vuex": "^3.0.1",
-    "yzfwork": "^0.1.7"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.12.0",

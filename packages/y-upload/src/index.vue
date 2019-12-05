@@ -109,6 +109,12 @@ export default {
       default() {
         return true;
       }
+    },
+    token: {
+      type: String,
+      default() {
+        return "";
+      }
     }
   },
   created() {
@@ -159,10 +165,17 @@ export default {
         let formdata = new FormData();
         formdata.append("file", files[i]);
         ajax
-          .post(this.uploadUrl, formdata)
+          .post(this.uploadUrl, formdata, {
+            headers: {
+              Authorization: "Bearer " + this.token
+            }
+          })
           .then(res => {
             e.target.value = "";
-            let obj = { imgPath: res.imgurl || res.data };
+            let obj = {
+              imgPath: res.imgurl || res.data.path || res.data,
+              id: res.data.id
+            };
             this.imgUrl.push(obj);
             this.$emit("uploadChildSay", this.imgUrl);
             if (this.imgUrl.length == files.length) {

@@ -37,10 +37,10 @@ module.exports = {
         // 修改它的选项...
         return options
       })
-      config.resolve.alias
-            .set('@', path.resolve(__dirname, './src'))
-            .set('&', path.resolve(__dirname, './static'))
-            .set('vue$', 'vue/dist/vue.esm.js', )
+    config.resolve.alias
+      .set('@', path.resolve(__dirname, './src'))
+      .set('&', path.resolve(__dirname, './static'))
+      .set('vue$', 'vue/dist/vue.esm.js')
   },
   devServer: {
     host: 'localhost',
@@ -50,6 +50,7 @@ module.exports = {
     // baseUrl: '/',
     // proxy: 'http://dev.routine',
     proxy: {
+      //自己的
       '/v1': {
         target: 'http://shop.yyyzf.xyz',
         changeOrigin: true,
@@ -58,12 +59,23 @@ module.exports = {
           '^/v1': '/v1'
         }
       },
+      //爱库存的
       '/ikucun-service': {
         target: 'http://dev.routine',
         changeOrigin: true,
         // ws: true,
         pathRewrite: {
-            '^/ikucun-service': '/ikucun-service'
+          '^/ikucun-service': '/ikucun-service'
+        }
+      },
+      //电商的
+      '/manage': {
+        target: 'http://test.routine/',
+        // target: 'http://dev.routine',
+        changeOrigin: true,
+        // ws: true,
+        pathRewrite: {
+            '^/manage': '/manage'
         }
     },
     }

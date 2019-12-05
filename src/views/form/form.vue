@@ -41,7 +41,11 @@ export default {
     return {
       code: demoCode.demoDefault(),
       formModel: formData.formModel,
-      formData: {},
+      formData: {
+        radio:1,
+        stair:9,
+        describe:'asdasasdsd'
+      },
       tableData: demoCode.demoTableData,
       tableModel: demoCode.demoTableModel,
       tableData1: demoCode.demoTableData1,
@@ -49,9 +53,14 @@ export default {
       tableModel2: demoCode.demoTableModel2
     };
   },
+  created(){
+    this.formModel[5].imgList=[{ imgPath:'http://qiniu.refectman.com/Fqzj_tzn2SIVbDVF_GzK42cUgdVS?imageslim' }];
+  },
   methods: {
     /**上传图片回调 */
-    uploadCallback() {},
+    uploadCallback(val) {
+      console.log(val)
+    },
     /**提交 */
     submit(name) {
       let result = this.$refs[name].getFormData();
