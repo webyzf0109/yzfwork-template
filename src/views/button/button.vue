@@ -13,7 +13,7 @@
       <ul class="ul-info">
         <li>什么都不用传</li>
       </ul>
-      <y-button>默认按钮</y-button>
+      <y-button @click="handle(1,2,3)">默认按钮</y-button>
       <pre v-highlightA>
       <code>
         {{defaultCode}}
@@ -92,7 +92,13 @@ export default {
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+    handle(a,b,c){
+      console.log(a,'a')
+      console.log(b,'b')
+      console.log(c,'c')
+    }
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）

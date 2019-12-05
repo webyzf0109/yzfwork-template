@@ -13,6 +13,7 @@
     :disabled="disabled"
     :autofocus="autofocus"
     :native-type="nativeType"
+    @click="click"
   >
     <slot></slot>
   </el-button>
@@ -102,7 +103,11 @@ export default {
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+    click(val){
+      this.$emit('click',val)
+    }
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
