@@ -41,6 +41,7 @@
               :readonly="item.readonly"
               :disabled="item.disabled"
               :show-word-limit="item.showWordLimit"
+              :show-password="item.showPassword"
               :placeholder="item.placeholder?item.placeholder:'请输入'+item.label"
               @change="item.onChange($event, iformModel, iformData, index)"
               :style="{width:item.width+'px!important'}"

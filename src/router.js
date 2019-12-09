@@ -1,17 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import layout from './views/layout/layout.vue'
-import table from './views/table/table.vue'
-import form from './views/form/form.vue'
-import upload from './views/upload/upload.vue'
-import button from './views/button/button.vue'
-import color from './views/color/color.vue'
-import use from './views/use/use.vue'
-import ueEditor from './views/editor/ueEditor.vue'
-import vueHtmlEditor from './views/editor/vueHtmlEditor.vue'
-import newLayout from './views/newLayout/newLayout.vue'
-import breadCrumb from './views/breadCrumb/breadCrumb.vue'
-import page from './views/page/page.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -21,63 +9,68 @@ export default new Router({
     {
       path:'/newLayout',
       name:'newLayout',
-      component:newLayout
+      component: resolve=>(require(["@/views/newLayout/newLayout.vue"],resolve)),
     },
     {
       path: '/',
       name: 'layout',
-      component: layout,
+      component: resolve=>(require(["@/views/layout/layout.vue"],resolve)),
       redirect: '/use',
       children: [
         {
           path: '/use',
           name: 'use',
-          component: use
+          component: resolve=>(require(["@/views/use/use.vue"],resolve)),
         },
         {
           path: '/table',
           name: 'table',
-          component: table
+          component: resolve=>(require(["@/views/table/table.vue"],resolve)),
         },
         {
           path: '/form',
           name: 'form',
-          component: form
+          component: resolve=>(require(["@/views/form/form.vue"],resolve)),
         },
         {
           path: '/upload',
           name: 'upload',
-          component: upload
+          component: resolve=>(require(["@/views/upload/upload.vue"],resolve)),
         },
         {
           path: '/button',
           name: 'button',
-          component: button
+          component: resolve=>(require(["@/views/button/button.vue"],resolve)),
         },
         {
           path: '/color',
           name: 'color',
-          component: color
+          component: resolve=>(require(["@/views/color/color.vue"],resolve)),
         },
         {
           path: '/ueEditor',
           name: 'ueEditor',
-          component: ueEditor
+          component: resolve=>(require(["@/views/editor/ueEditor.vue"],resolve)),
         },
         {
           path: '/vueHtmlEditor',
           name: 'vueHtmlEditor',
-          component: vueHtmlEditor
+          component: resolve=>(require(["@/views/editor/vueHtmlEditor.vue"],resolve)),
         },
         {
           path: '/breadCrumb',
           name: 'breadCrumb',
-          component: breadCrumb
+          component: resolve=>(require(["@/views/breadCrumb/breadCrumb.vue"],resolve)),
         },
         {
           path:'/page',
           name:'page',
-          component:page
+          component: resolve=>(require(["@/views/page/page.vue"],resolve)),
+        },
+        {
+          path:'/tree',
+          name:'tree',
+          component: resolve=>(require(["@/views/tree/tree.vue"],resolve)),
         }
       ]
     },
