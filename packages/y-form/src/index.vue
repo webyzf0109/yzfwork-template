@@ -345,11 +345,6 @@ export default {
     this._initRules();
     this.initForm(this.iformModel);
   },
-  computed:{
-    iformData(){
-      return JSON.parse(JSON.stringify(this.iformData))
-    }
-  },
   methods: {
     /*
      * 初始化验证规则
