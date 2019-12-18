@@ -116,6 +116,49 @@ const demoCode = {
             maxNum: 1,
             uploadUrl: '/v1/upload',
             imgList: []
+        },
+        {
+            label: '权限配置：',
+            labelWidth: 100,
+            prop: 'resource',
+            elemType: 'tree',
+            rules: ['required'],
+            ref:'tree',
+            data: [
+                {
+                    id: 1,
+                    name: "数据",
+                    list: [
+                        {
+                            id: 2,
+                            name: "店铺总览"
+                        },
+                        {
+                            id: 3,
+                            name: "数据统计"
+                        },
+                        {
+                            id: 4,
+                            name: "财务管理"
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    name: "账户",
+                    list: [
+                        {
+                            id: 6,
+                            name: "修改密码"
+                        },
+                        {
+                            id: 7,
+                            name: "员工管理"
+                        }
+                    ]
+                }
+            ],
+            defaultCheckedData: [],
         }
     ],
     //js方法部分
