@@ -27,8 +27,8 @@ export default {
     //这里存放数据
     return {
       defaultCode: demoCode.defaultCode(),
-      tableData:demoCode.tableData(),
-      tableModel:demoCode.tableModel(),
+      tableData: demoCode.tableData(),
+      tableModel: demoCode.tableModel(),
       data: [
         {
           id: 1,
@@ -63,7 +63,7 @@ export default {
           ]
         }
       ],
-      defaultCheckedData: [1, 2, 3, 4, 5, 6, 7]
+      defaultCheckedData: [1, 2, 3, 5, 6, 7]
     };
   },
   //监听属性 类似于data概念
@@ -74,11 +74,13 @@ export default {
   methods: {
     //节点发生变化
     checkedChange(val) {
-      console.log(val);
+      // console.log(val);
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前

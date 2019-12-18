@@ -1,5 +1,5 @@
 <template>
-  <div class="y-upload" :style="{height:height+25+'px'}">
+  <div class="y-upload" :style="{height:height+'px'}">
     <div
       class="view"
       v-if="imgUrl.length>0"

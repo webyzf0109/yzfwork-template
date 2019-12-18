@@ -57,24 +57,56 @@ export default {
     //这里存放数据
     return {
       allChecked: false,
-      arr: []
+      arr: [],
+      newCheckedData: []
     };
   },
   //监听属性 类似于data概念
   computed: {},
   //监控data中的数据变化
-  watch: {},
+  watch: {
+    defaultCheckedData: function(newValue, oldValue) {
+      this.newCheckedData = newValue;
+    }
+  },
   //方法集合
   methods: {
     //设置初始选中数据
     setDefaultData() {
-      this.$refs.tree.setCheckedKeys(this.defaultCheckedData);
+      this.data.forEach((item, index) => {
+        if (
+          item[this.defaultProps.children] &&
+          item[this.defaultProps.children].length > 0
+        ) {
+          this.newCheckedData = this.functionArray.removeArrayItem(
+            this.newCheckedData,
+            item.id
+          );
+          item[this.defaultProps.children].forEach((val, idx) => {
+            if (
+              val[this.defaultProps.children] &&
+              val[this.defaultProps.children].length > 0
+            ) {
+              this.newCheckedData = this.functionArray.removeArrayItem(
+                this.newCheckedData,
+                val.id
+              );
+            }
+          });
+        }
+      });
+      this.$refs.tree.setCheckedKeys(this.newCheckedData);
     },
     //节点发生变化
     checkedChange() {
+      this.newCheckedData=this.$refs.tree.getCheckedKeys();
       let length = this.$refs.tree.getCheckedKeys().length;
       this.allChecked = length == this.arr.length ? true : false;
       this.$emit("checkedChange", this.$refs.tree.getCheckedKeys());
+    },
+    //父组件通过此方法初始化数据
+    initChecked(){
+      this.$refs.tree.setCheckedKeys([]);
     },
     //全选监听
     allCheckedChange(val) {
@@ -110,12 +142,13 @@ export default {
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
+    this.newCheckedData = this.defaultCheckedData;
     this.getAllId();
-    this.$nextTick(()=>{
-        this.setDefaultData();
-    })
-    
+    this.$nextTick(() => {
+      this.setDefaultData();
+    });
   },
+
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
@@ -132,7 +165,10 @@ export default {
 .y-tree {
   .allChecked {
     margin-left: 22px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+  }
+  .el-tree {
+    background: none;
   }
 }
 </style>

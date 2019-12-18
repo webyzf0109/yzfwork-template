@@ -13,6 +13,7 @@
       :formData="formData"
       :formModel="formModel"
       @uploadCallback="uploadCallback"
+      @checkedChange="checkedChange"
     >
       <div slot="iform-btns">
         <el-button type="primary" size="small" @click="submit('iforms')">提交</el-button>
@@ -44,7 +45,7 @@ export default {
       formData: {
         radio:1,
         stair:9,
-        describe:'asdasasdsd'
+        describe:'asdasasdsd',
       },
       tableData: demoCode.demoTableData,
       tableModel: demoCode.demoTableModel,
@@ -54,12 +55,17 @@ export default {
     };
   },
   created(){
-    this.formModel[5].imgList=[{ imgPath:'http://qiniu.refectman.com/Fqzj_tzn2SIVbDVF_GzK42cUgdVS?imageslim' }];
+    // this.formModel[5].imgList=[{ imgPath:'http://qiniu.refectman.com/Fqzj_tzn2SIVbDVF_GzK42cUgdVS?imageslim' }];
+    // this.formData.url = 'http://qiniu.refectman.com/Fqzj_tzn2SIVbDVF_GzK42cUgdVS?imageslim'
   },
   methods: {
     /**上传图片回调 */
     uploadCallback(val) {
       console.log(val)
+    },
+    /**监听权限树 */
+    checkedChange(val){
+      console.log(val,'val')
     },
     /**提交 */
     submit(name) {

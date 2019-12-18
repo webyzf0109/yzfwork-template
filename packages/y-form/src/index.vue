@@ -190,6 +190,16 @@
                 @uploadChildSay="uploadChildSay($event,item.prop)"
               ></y-upload>
             </div>
+
+            <!-- /**权限树 */ -->
+            <div class="tree-box" v-else-if="item.elemType==='tree'">
+              <y-tree
+                ref="trees"
+                :data="item.data"
+                :defaultCheckedData="item.defaultCheckedData"
+                @checkedChange="checkedChange($event,item.prop)"
+              ></y-tree>
+            </div>
           </el-form-item>
         </el-col>
         <div :style="{'float': direction}">
@@ -431,15 +441,25 @@ export default {
      */
     resetForm() {
       this.$refs[this.formName].resetFields();
+      /**清除图片 */
       if (this.iformData.url && this.iformData.url.length > 0) {
         this.iformModel.forEach(item => {
           if (item.elemType == "upload") {
             item.imgList = [];
           }
         });
-        this.iformData.url=[];
+        this.iformData.url = [];
         this.$refs["upload"][0].clearValidate();
       }
+      /**清除权限树 */
+      this.iformModel.forEach(item => {
+        if (item.elemType == "tree") {
+          this.iformData['tree'] = [];
+          this.$refs['trees'][0].initChecked();
+          this.$refs["tree"][0].clearValidate();
+          this.$emit("checkedChange", this.iformData['tree']);
+        }
+      });
 
       if (this.$refs[this.formName + "searchTree"]) {
         this.$refs[this.formName + "searchTree"][0].resetTree();
@@ -449,7 +469,16 @@ export default {
       if (val.length > 0) {
         this.iformData[prop] = val;
         this.$refs["upload"][0].clearValidate();
-        this.$emit('uploadCallback',this.iformData[prop])
+        this.$emit("uploadCallback", this.iformData[prop]);
+      }
+    },
+    checkedChange(val, prop) {
+      if (val.length > 0) {
+        this.iformData[prop] = val;
+        this.$refs["tree"][0].clearValidate();
+        this.$emit("checkedChange", this.iformData[prop]);
+      } else {
+        this.iformData[prop] = val;
       }
     },
     /*

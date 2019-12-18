@@ -16,6 +16,11 @@ import Highlight from '@/utils/highlight';
 import 'highlight.js/styles/monokai-sublime.css';
 Vue.use(Highlight);
 
+
+/**引用方法集合 */
+import functionArray from '@/utils/function';
+Vue.prototype.functionArray = functionArray;
+
 Vue.config.productionTip = false
 
 new Vue({
