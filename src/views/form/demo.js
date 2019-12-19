@@ -7,6 +7,7 @@ const demoCode = {
       :formData="formData"
       :formModel="formModel"
       @uploadCallback="uploadCallback"
+      @checkedChange="checkedChange"
     >
     <template slot="fromslot1" slot-scope="scope">
         <img
@@ -186,6 +187,10 @@ const demoCode = {
     //js方法部分
     /**上传图片回调 */
     uploadCallback() {},
+    /**监听权限树 */
+    checkedChange(val) {
+      console.log(val, "val");
+    },
     /**提交 */
     submit(name) {
       let result = this.$refs[name].getFormData();
@@ -245,6 +250,14 @@ const demoCode = {
         value: "Function(val)",
         defaultValue: "——",
         isSure: `false`
+    },
+    {
+        name: "checkedChange",
+        description: "权限树的回调",
+        type: "Number",
+        value: "Function(val)",
+        defaultValue: "——",
+        isSure: `false`,
     },
     {
         name: "isReady",
