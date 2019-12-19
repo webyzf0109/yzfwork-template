@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import functionArray from '@/utils/function.js'
 export default {
   props: {
     data: {
@@ -78,7 +79,7 @@ export default {
           item[this.defaultProps.children] &&
           item[this.defaultProps.children].length > 0
         ) {
-          this.newCheckedData = this.functionArray.removeArrayItem(
+          this.newCheckedData = functionArray.removeArrayItem(
             this.newCheckedData,
             item.id
           );
@@ -87,7 +88,7 @@ export default {
               val[this.defaultProps.children] &&
               val[this.defaultProps.children].length > 0
             ) {
-              this.newCheckedData = this.functionArray.removeArrayItem(
+              this.newCheckedData = functionArray.removeArrayItem(
                 this.newCheckedData,
                 val.id
               );

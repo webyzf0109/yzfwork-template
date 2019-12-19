@@ -68,7 +68,7 @@ class formData {
                 prop: 'describe',
                 labelWidth: 100,
                 label: '描述',
-                maxlength: 200,
+                maxlength: 20,
                 rules: ["required"],
                 width: 300,
                 showWordLimit: true,

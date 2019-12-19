@@ -55,6 +55,7 @@
               v-model="iformData[item.prop]"
               :rows="item.rows"
               :maxlength="item.maxlength"
+              :disabled="item.disabled"
               :readonly="item.readonly"
               :show-word-limit="item.showWordLimit"
               resize="both"
@@ -174,29 +175,21 @@
             </div>
 
             <div v-else-if="item.elemType === 'slot'">
-               <template  v-if="item.slot=='fromslot1'">
-                  <slot name="fromslot1" :scope="item.slotValue"></slot>
-                </template>
-            </div>
-            <div v-else-if="item.elemType === 'slot'">
-                <template slot-scope="scope" v-if="item.slot=='fromslot2'">
-                  <slot name="fromslot2" :scope="scope"></slot>
-                </template>
-            </div>
-            <div v-else-if="item.elemType === 'slot'">
-                <template slot-scope="scope" v-if="item.slot=='fromslot3'">
-                  <slot name="fromslot3" :scope="scope"></slot>
-                </template>
-            </div>
-            <div v-else-if="item.elemType === 'slot'">
-                <template slot-scope="scope" v-if="item.slot=='fromslot4'">
-                  <slot name="fromslot4" :scope="scope"></slot>
-                </template>
-            </div>
-            <div v-else-if="item.elemType === 'slot'">
-                <template slot-scope="scope" v-if="item.slot=='fromslot5'">
-                  <slot name="fromslot5" :scope="scope"></slot>
-                </template>
+              <template v-if="item.slot=='fromslot1'">
+                <slot name="fromslot1" :scope="item.slotValue"></slot>
+              </template>
+              <template v-if="item.slot=='fromslot2'">
+                <slot name="fromslot2" :scope="item.slotValue"></slot>
+              </template>
+              <template v-if="item.slot=='fromslot3'">
+                <slot name="fromslot3" :scope="item.slotValue"></slot>
+              </template>
+              <template v-if="item.slot=='fromslot4'">
+                <slot name="fromslot4" :scope="item.slotValue"></slot>
+              </template>
+              <template v-if="item.slot=='fromslot5'">
+                <slot name="fromslot5" :scope="item.slotValue"></slot>
+              </template>
             </div>
 
             <!-- /**图片 */ -->
@@ -480,10 +473,10 @@ export default {
       /**清除权限树 */
       this.iformModel.forEach(item => {
         if (item.elemType == "tree") {
-          this.iformData['tree'] = [];
-          this.$refs['trees'][0].initChecked();
+          this.iformData["tree"] = [];
+          this.$refs["trees"][0].initChecked();
           this.$refs["tree"][0].clearValidate();
-          this.$emit("checkedChange", this.iformData['tree']);
+          this.$emit("checkedChange", this.iformData["tree"]);
         }
       });
 

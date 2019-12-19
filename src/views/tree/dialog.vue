@@ -1,38 +1,28 @@
-<!-- tree -->
+<!-- treeDialog -->
 <template>
-  <div class="tree">
-    <h1>权限树</h1>
-    <ul class="ul-info">
-      <li>基于所有的权限树做个统一,只需传入原始数据和初始选中数据,对里面的逻辑做了封装,不用每次再写</li>
-    </ul>
-    <y-button @click="addDialog">显示在弹窗里</y-button>
-    <section>
-      <h1 style="margin-bottom:20px;">示例</h1>
+  <div class="treeDialog">
+    <el-dialog
+      title="弹窗显示"
+      custom-class="treeDialog"
+      :visible.sync="dialogVisible"
+      :close-on-click-modal="false"
+      width="480px"
+      :before-close="cancle"
+    >
       <y-tree :data="data" :defaultCheckedData="defaultCheckedData" @checkedChange="checkedChange"></y-tree>
-      <pre v-highlightA>
-      <code>
-        {{defaultCode}}
-      </code>
-    </pre>
-    </section>
-    <y-table :tableData="tableData" :tableModel="tableModel" :border="false"></y-table>
-    <v-dialog v-if="dialogShow" @dialogSay="dialogSay"></v-dialog>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import demoCode from "./demoCode";
-import dialog from "./dialog.vue"
 export default {
-  components: {
-    "v-dialog":dialog
-  },
+  components: {},
+  props: ["userId"],
   data() {
     //这里存放数据
     return {
-      defaultCode: demoCode.defaultCode(),
-      tableData: demoCode.tableData(),
-      tableModel: demoCode.tableModel(),
+      dialogVisible: true,
       data: [
         {
           id: 1,
@@ -67,32 +57,20 @@ export default {
           ]
         }
       ],
-      defaultCheckedData: [1, 2, 3, 5, 6, 7],
-      dialogShow:false,
+      defaultCheckedData: [1, 2, 3, 5, 6, 7]
     };
   },
-  //监听属性 类似于data概念
-  computed: {},
-  //监控data中的数据变化
   watch: {},
+
   //方法集合
   methods: {
+    cancle() {
+      this.$emit("dialogSay");
+    },
     //节点发生变化
     checkedChange(val) {
-      console.log(val);
-    },
-    /**显示弹窗 */
-    addDialog(){
-      this.dialogShow=true;
-    },
-    /**关闭弹窗 */
-    dialogSay(){
-      this.dialogShow=false;
+      // console.log(val);
     }
-  },
-  //生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
@@ -105,6 +83,11 @@ export default {
   activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style lang='less' scoped>
+<style lang='less'>
 //@import url(); 引入公共css类
+.treeDialog {
+  .el-dialog__body {
+    padding-bottom: 0;
+  }
+}
 </style>
