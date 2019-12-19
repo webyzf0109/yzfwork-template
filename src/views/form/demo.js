@@ -8,6 +8,15 @@ const demoCode = {
       :formModel="formModel"
       @uploadCallback="uploadCallback"
     >
+    <template slot="fromslot1" slot-scope="scope">
+        <img
+        v-for="(item,index) in scope.scope" :key="item+index"
+        :src="item.url"
+        alt
+        width="60px"
+        style="margin-right:10px;"
+        />
+    </template>
       <div slot="iform-btns">
         <el-button type="primary" size="small" @click="validate('iforms')">提交</el-button>
         <el-button type="default" size="small" @click="_reset('iforms')">重置</el-button>
@@ -100,6 +109,19 @@ const demoCode = {
             col: 'name',
             colVal: 'id',
             options: []
+        },
+        {
+            elemType: 'slot',
+            slot: 'fromslot1',
+            labelWidth: 100,
+            label: '自定义',
+            slotValue: [{
+                url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576737807834&di=45b19807ae2c8f35b70a68366d565254&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb1cce6f996734bdbb9b3fb9ef7705deabc980e35493b-ysf8BZ_fw658'
+            },{
+                url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576737807834&di=45b19807ae2c8f35b70a68366d565254&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb1cce6f996734bdbb9b3fb9ef7705deabc980e35493b-ysf8BZ_fw658'
+            },{
+                url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576737807834&di=45b19807ae2c8f35b70a68366d565254&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb1cce6f996734bdbb9b3fb9ef7705deabc980e35493b-ysf8BZ_fw658'
+            }]
         },
         {
             label: '上传图片：',

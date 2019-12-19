@@ -87,6 +87,19 @@ class formData {
                 options: []
             },
             {
+                elemType: 'slot',
+                slot: 'fromslot1',
+                labelWidth: 100,
+                label: '自定义',
+                slotValue: [{
+                    url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576737807834&di=45b19807ae2c8f35b70a68366d565254&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb1cce6f996734bdbb9b3fb9ef7705deabc980e35493b-ysf8BZ_fw658'
+                },{
+                    url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576737807834&di=45b19807ae2c8f35b70a68366d565254&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb1cce6f996734bdbb9b3fb9ef7705deabc980e35493b-ysf8BZ_fw658'
+                },{
+                    url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576737807834&di=45b19807ae2c8f35b70a68366d565254&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb1cce6f996734bdbb9b3fb9ef7705deabc980e35493b-ysf8BZ_fw658'
+                }]
+            },
+            {
                 label: '上传图片：',
                 labelWidth: 100,
                 prop: 'url',
@@ -112,7 +125,7 @@ class formData {
                 prop: 'resource',
                 elemType: 'tree',
                 rules: ['required'],
-                ref:'tree',
+                ref: 'tree',
                 data: [
                     {
                         id: 1,

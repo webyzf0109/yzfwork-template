@@ -173,6 +173,32 @@
               <div v-else>{{iformData[item.prop]}}</div>
             </div>
 
+            <div v-else-if="item.elemType === 'slot'">
+               <template  v-if="item.slot=='fromslot1'">
+                  <slot name="fromslot1" :scope="item.slotValue"></slot>
+                </template>
+            </div>
+            <div v-else-if="item.elemType === 'slot'">
+                <template slot-scope="scope" v-if="item.slot=='fromslot2'">
+                  <slot name="fromslot2" :scope="scope"></slot>
+                </template>
+            </div>
+            <div v-else-if="item.elemType === 'slot'">
+                <template slot-scope="scope" v-if="item.slot=='fromslot3'">
+                  <slot name="fromslot3" :scope="scope"></slot>
+                </template>
+            </div>
+            <div v-else-if="item.elemType === 'slot'">
+                <template slot-scope="scope" v-if="item.slot=='fromslot4'">
+                  <slot name="fromslot4" :scope="scope"></slot>
+                </template>
+            </div>
+            <div v-else-if="item.elemType === 'slot'">
+                <template slot-scope="scope" v-if="item.slot=='fromslot5'">
+                  <slot name="fromslot5" :scope="scope"></slot>
+                </template>
+            </div>
+
             <!-- /**图片 */ -->
             <div class="upload-box" v-else-if="item.elemType === 'upload'">
               <y-upload
