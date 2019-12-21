@@ -1,17 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import layout from './views/layout/layout.vue'
-import table from './views/table/table.vue'
-import form from './views/form/form.vue'
-import upload from './views/upload/upload.vue'
-import button from './views/button/button.vue'
-import color from './views/color/color.vue'
-import use from './views/use/use.vue'
-import ueEditor from './views/editor/ueEditor.vue'
-import vueHtmlEditor from './views/editor/vueHtmlEditor.vue'
-import newLayout from './views/newLayout/newLayout.vue'
-import breadCrumb from './views/breadCrumb/breadCrumb.vue'
-import page from './views/page/page.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -21,7 +10,7 @@ export default new Router({
     {
       path:'/newLayout',
       name:'newLayout',
-      component:newLayout
+      component: () => import(/* webpackChunkName: "newLayout" */ './views/newLayout/newLayout.vue'),
     },
     {
       path: '/',
@@ -32,52 +21,52 @@ export default new Router({
         {
           path: '/use',
           name: 'use',
-          component: use
+          component: () => import(/* webpackChunkName: "use" */ './views/use/use.vue'),
         },
         {
           path: '/table',
           name: 'table',
-          component: table
+          component: () => import(/* webpackChunkName: "table" */ './views/table/table.vue'),
         },
         {
           path: '/form',
           name: 'form',
-          component: form
+          component: () => import(/* webpackChunkName: "form" */ './views/form/form.vue'),
         },
         {
           path: '/upload',
           name: 'upload',
-          component: upload
+          component: () => import(/* webpackChunkName: "upload" */ './views/upload/upload.vue'),
         },
         {
           path: '/button',
           name: 'button',
-          component: button
+          component: () => import(/* webpackChunkName: "button" */ './views/button/button.vue'),
         },
         {
           path: '/color',
           name: 'color',
-          component: color
+          component: () => import(/* webpackChunkName: "color" */ './views/color/color.vue'),
         },
         {
           path: '/ueEditor',
           name: 'ueEditor',
-          component: ueEditor
+          component: () => import(/* webpackChunkName: "ueEditor" */ './views/editor/ueEditor.vue'),
         },
         {
           path: '/vueHtmlEditor',
           name: 'vueHtmlEditor',
-          component: vueHtmlEditor
+          component: () => import(/* webpackChunkName: "vueHtmlEditor" */ './views/editor/vueHtmlEditor.vue'),
         },
         {
           path: '/breadCrumb',
           name: 'breadCrumb',
-          component: breadCrumb
+          component: () => import(/* webpackChunkName: "breadCrumb" */ './views/breadCrumb/breadCrumb.vue'),
         },
         {
           path:'/page',
           name:'page',
-          component:page
+          component: () => import(/* webpackChunkName: "page" */ './views/page/page.vue'),
         }
       ]
     },
