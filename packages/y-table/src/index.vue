@@ -59,6 +59,7 @@
         :align="col.align"
         :width="col.width"
         :min-width="col.minWidth"
+        :sortable="col.sortable"
         :key="col.prop"
       >
         <template slot-scope="scope">
@@ -74,6 +75,7 @@
         :label="col.label"
         :width="col.width"
         :min-width="col.minWidth"
+        :sortable="col.sortable"
         v-else-if="col.slot=='operation1'"
       >
         <template slot-scope="scope">
@@ -84,6 +86,7 @@
         :label="col.label"
         :width="col.width"
         :min-width="col.minWidth"
+        :sortable="col.sortable"
         v-else-if="col.slot=='operation2'"
       >
         <template slot-scope="scope" v-if="col.slot=='operation2'">
@@ -94,6 +97,7 @@
         :label="col.label"
         :width="col.width"
         :min-width="col.minWidth"
+        :sortable="col.sortable"
         v-else-if="col.slot=='operation3'"
       >
         <template slot-scope="scope" v-if="col.slot=='operation3'">
@@ -104,6 +108,7 @@
         :label="col.label"
         :width="col.width"
         :min-width="col.minWidth"
+        :sortable="col.sortable"
         v-else-if="col.slot=='operation4'"
       >
         <template slot-scope="scope" v-if="col.slot=='operation4'">
@@ -114,6 +119,7 @@
         :label="col.label"
         :width="col.width"
         :min-width="col.minWidth"
+        :sortable="col.sortable"
         v-else-if="col.slot=='operation5'"
       >
         <template slot-scope="scope" v-if="col.slot=='operation5'">

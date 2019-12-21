@@ -41,6 +41,7 @@
               :readonly="item.readonly"
               :disabled="item.disabled"
               :show-word-limit="item.showWordLimit"
+              :show-password="item.showPassword"
               :placeholder="item.placeholder?item.placeholder:'请输入'+item.label"
               @change="item.onChange($event, iformModel, iformData, index)"
               :style="{width:item.width+'px!important'}"
@@ -54,6 +55,7 @@
               v-model="iformData[item.prop]"
               :rows="item.rows"
               :maxlength="item.maxlength"
+              :disabled="item.disabled"
               :readonly="item.readonly"
               :show-word-limit="item.showWordLimit"
               resize="both"
@@ -172,6 +174,24 @@
               <div v-else>{{iformData[item.prop]}}</div>
             </div>
 
+            <div v-else-if="item.elemType === 'slot'">
+              <template v-if="item.slot=='fromslot1'">
+                <slot name="fromslot1" :scope="item.slotValue"></slot>
+              </template>
+              <template v-if="item.slot=='fromslot2'">
+                <slot name="fromslot2" :scope="item.slotValue"></slot>
+              </template>
+              <template v-if="item.slot=='fromslot3'">
+                <slot name="fromslot3" :scope="item.slotValue"></slot>
+              </template>
+              <template v-if="item.slot=='fromslot4'">
+                <slot name="fromslot4" :scope="item.slotValue"></slot>
+              </template>
+              <template v-if="item.slot=='fromslot5'">
+                <slot name="fromslot5" :scope="item.slotValue"></slot>
+              </template>
+            </div>
+
             <!-- /**图片 */ -->
             <div class="upload-box" v-else-if="item.elemType === 'upload'">
               <y-upload
@@ -188,6 +208,16 @@
                 :uploadUrl="item.uploadUrl"
                 @uploadChildSay="uploadChildSay($event,item.prop)"
               ></y-upload>
+            </div>
+
+            <!-- /**权限树 */ -->
+            <div class="tree-box" v-else-if="item.elemType==='tree'">
+              <y-tree
+                ref="trees"
+                :data="item.data"
+                :defaultCheckedData="item.defaultCheckedData"
+                @checkedChange="checkedChange($event,item.prop)"
+              ></y-tree>
             </div>
           </el-form-item>
         </el-col>
@@ -345,11 +375,6 @@ export default {
     this._initRules();
     this.initForm(this.iformModel);
   },
-  computed:{
-    iformData(){
-      return JSON.parse(JSON.stringify(this.iformData))
-    }
-  },
   methods: {
     /*
      * 初始化验证规则
@@ -435,15 +460,25 @@ export default {
      */
     resetForm() {
       this.$refs[this.formName].resetFields();
+      /**清除图片 */
       if (this.iformData.url && this.iformData.url.length > 0) {
         this.iformModel.forEach(item => {
           if (item.elemType == "upload") {
             item.imgList = [];
           }
         });
-        this.iformData.url=[];
+        this.iformData.url = [];
         this.$refs["upload"][0].clearValidate();
       }
+      /**清除权限树 */
+      this.iformModel.forEach(item => {
+        if (item.elemType == "tree") {
+          this.iformData["tree"] = [];
+          this.$refs["trees"][0].initChecked();
+          this.$refs["tree"][0].clearValidate();
+          this.$emit("checkedChange", this.iformData["tree"]);
+        }
+      });
 
       if (this.$refs[this.formName + "searchTree"]) {
         this.$refs[this.formName + "searchTree"][0].resetTree();
@@ -453,7 +488,16 @@ export default {
       if (val.length > 0) {
         this.iformData[prop] = val;
         this.$refs["upload"][0].clearValidate();
-        this.$emit('uploadCallback',this.iformData[prop])
+        this.$emit("uploadCallback", this.iformData[prop]);
+      }
+    },
+    checkedChange(val, prop) {
+      if (val.length > 0) {
+        this.iformData[prop] = val;
+        this.$refs["tree"][0].clearValidate();
+        this.$emit("checkedChange", this.iformData[prop]);
+      } else {
+        this.iformData[prop] = val;
       }
     },
     /*

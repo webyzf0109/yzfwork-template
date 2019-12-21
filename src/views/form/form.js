@@ -68,7 +68,7 @@ class formData {
                 prop: 'describe',
                 labelWidth: 100,
                 label: '描述',
-                maxlength: 200,
+                maxlength: 20,
                 rules: ["required"],
                 width: 300,
                 showWordLimit: true,
@@ -87,6 +87,19 @@ class formData {
                 options: []
             },
             {
+                elemType: 'slot',
+                slot: 'fromslot1',
+                labelWidth: 100,
+                label: '自定义',
+                slotValue: [{
+                    url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576737807834&di=45b19807ae2c8f35b70a68366d565254&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb1cce6f996734bdbb9b3fb9ef7705deabc980e35493b-ysf8BZ_fw658'
+                },{
+                    url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576737807834&di=45b19807ae2c8f35b70a68366d565254&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb1cce6f996734bdbb9b3fb9ef7705deabc980e35493b-ysf8BZ_fw658'
+                },{
+                    url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576737807834&di=45b19807ae2c8f35b70a68366d565254&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb1cce6f996734bdbb9b3fb9ef7705deabc980e35493b-ysf8BZ_fw658'
+                }]
+            },
+            {
                 label: '上传图片：',
                 labelWidth: 100,
                 prop: 'url',
@@ -99,12 +112,55 @@ class formData {
                 sizeHeight: 750,
                 num: 1,
                 maxNum: 1,
-                sizeShow:false,
-                token:'5753607077759900',
+                sizeShow: false,
+                token: '5753607077759900',
                 // uploadUrl:'/ikucun-service/web/distributionExtract/uploadImg',//爱库存的
                 uploadUrl: '/manage/attachmentSubdivide/uploadImg',//电商分类
                 // uploadUrl: '/v1/upload',//自己的
                 imgList: []
+            },
+            {
+                label: '权限配置：',
+                labelWidth: 100,
+                prop: 'resource',
+                elemType: 'tree',
+                rules: ['required'],
+                ref: 'tree',
+                data: [
+                    {
+                        id: 1,
+                        name: "数据",
+                        list: [
+                            {
+                                id: 2,
+                                name: "店铺总览"
+                            },
+                            {
+                                id: 3,
+                                name: "数据统计"
+                            },
+                            {
+                                id: 4,
+                                name: "财务管理"
+                            }
+                        ]
+                    },
+                    {
+                        id: 5,
+                        name: "账户",
+                        list: [
+                            {
+                                id: 6,
+                                name: "修改密码"
+                            },
+                            {
+                                id: 7,
+                                name: "员工管理"
+                            }
+                        ]
+                    }
+                ],
+                defaultCheckedData: [],
             }
 
         ]

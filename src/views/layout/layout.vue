@@ -142,6 +142,12 @@ export default {
           name: "分页",
           parentId: 0,
           path: "/page"
+        },
+        {
+          id: 11,
+          name: "权限树",
+          parentId: 0,
+          path: "/tree"
         }
       ]
     };

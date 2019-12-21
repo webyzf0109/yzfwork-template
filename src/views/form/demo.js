@@ -7,7 +7,17 @@ const demoCode = {
       :formData="formData"
       :formModel="formModel"
       @uploadCallback="uploadCallback"
+      @checkedChange="checkedChange"
     >
+    <template slot="fromslot1" slot-scope="scope">
+        <img
+        v-for="(item,index) in scope.scope" :key="item+index"
+        :src="item.url"
+        alt
+        width="60px"
+        style="margin-right:10px;"
+        />
+    </template>
       <div slot="iform-btns">
         <el-button type="primary" size="small" @click="validate('iforms')">提交</el-button>
         <el-button type="default" size="small" @click="_reset('iforms')">重置</el-button>
@@ -102,6 +112,19 @@ const demoCode = {
             options: []
         },
         {
+            elemType: 'slot',
+            slot: 'fromslot1',
+            labelWidth: 100,
+            label: '自定义',
+            slotValue: [{
+                url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576737807834&di=45b19807ae2c8f35b70a68366d565254&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb1cce6f996734bdbb9b3fb9ef7705deabc980e35493b-ysf8BZ_fw658'
+            },{
+                url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576737807834&di=45b19807ae2c8f35b70a68366d565254&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb1cce6f996734bdbb9b3fb9ef7705deabc980e35493b-ysf8BZ_fw658'
+            },{
+                url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576737807834&di=45b19807ae2c8f35b70a68366d565254&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb1cce6f996734bdbb9b3fb9ef7705deabc980e35493b-ysf8BZ_fw658'
+            }]
+        },
+        {
             label: '上传图片：',
             labelWidth: 100,
             prop: 'url',
@@ -116,11 +139,58 @@ const demoCode = {
             maxNum: 1,
             uploadUrl: '/v1/upload',
             imgList: []
+        },
+        {
+            label: '权限配置：',
+            labelWidth: 100,
+            prop: 'resource',
+            elemType: 'tree',
+            rules: ['required'],
+            ref:'tree',
+            data: [
+                {
+                    id: 1,
+                    name: "数据",
+                    list: [
+                        {
+                            id: 2,
+                            name: "店铺总览"
+                        },
+                        {
+                            id: 3,
+                            name: "数据统计"
+                        },
+                        {
+                            id: 4,
+                            name: "财务管理"
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    name: "账户",
+                    list: [
+                        {
+                            id: 6,
+                            name: "修改密码"
+                        },
+                        {
+                            id: 7,
+                            name: "员工管理"
+                        }
+                    ]
+                }
+            ],
+            defaultCheckedData: [],
         }
     ],
     //js方法部分
     /**上传图片回调 */
     uploadCallback() {},
+    /**监听权限树 */
+    checkedChange(val) {
+      console.log(val, "val");
+    },
     /**提交 */
     submit(name) {
       let result = this.$refs[name].getFormData();
@@ -180,6 +250,14 @@ const demoCode = {
         value: "Function(val)",
         defaultValue: "——",
         isSure: `false`
+    },
+    {
+        name: "checkedChange",
+        description: "权限树的回调",
+        type: "Number",
+        value: "Function(val)",
+        defaultValue: "——",
+        isSure: `false`,
     },
     {
         name: "isReady",

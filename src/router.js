@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import layout from './views/layout/layout.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -15,7 +14,7 @@ export default new Router({
     {
       path: '/',
       name: 'layout',
-      component: layout,
+      component: () => import(/* webpackChunkName: "layout" */ './views/layout/layout.vue'),
       redirect: '/use',
       children: [
         {

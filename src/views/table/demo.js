@@ -164,7 +164,7 @@ const demoCode = {
     },
     {
       name: "selectionChange",
-      description: "全选的时间回调",
+      description: "全选的事件回调",
       type: "Function",
       value: "raadio/selection都触发此事件",
       defaultValue: "100%",

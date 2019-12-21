@@ -13,7 +13,17 @@
       :formData="formData"
       :formModel="formModel"
       @uploadCallback="uploadCallback"
+      @checkedChange="checkedChange"
     >
+      <template slot="fromslot1" slot-scope="scope">
+        <img
+          v-for="(item,index) in scope.scope" :key="item+index"
+          :src="item.url"
+          alt
+          width="60px"
+          style="margin-right:10px;"
+        />
+      </template>
       <div slot="iform-btns">
         <el-button type="primary" size="small" @click="submit('iforms')">提交</el-button>
         <el-button type="default" size="small" @click="reset('iforms')">重置</el-button>
@@ -42,9 +52,9 @@ export default {
       code: demoCode.demoDefault(),
       formModel: formData.formModel,
       formData: {
-        radio:1,
-        stair:9,
-        describe:'asdasasdsd'
+        radio: 1,
+        stair: 9,
+        describe: "asdasasdsd"
       },
       tableData: demoCode.demoTableData,
       tableModel: demoCode.demoTableModel,
@@ -53,13 +63,18 @@ export default {
       tableModel2: demoCode.demoTableModel2
     };
   },
-  created(){
-    this.formModel[5].imgList=[{ imgPath:'http://qiniu.refectman.com/Fqzj_tzn2SIVbDVF_GzK42cUgdVS?imageslim' }];
+  created() {
+    // this.formModel[5].imgList=[{ imgPath:'http://qiniu.refectman.com/Fqzj_tzn2SIVbDVF_GzK42cUgdVS?imageslim' }];
+    // this.formData.url = 'http://qiniu.refectman.com/Fqzj_tzn2SIVbDVF_GzK42cUgdVS?imageslim'
   },
   methods: {
     /**上传图片回调 */
     uploadCallback(val) {
-      console.log(val)
+      console.log(val);
+    },
+    /**监听权限树 */
+    checkedChange(val) {
+      console.log(val, "val");
     },
     /**提交 */
     submit(name) {
