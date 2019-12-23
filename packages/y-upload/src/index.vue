@@ -1,5 +1,5 @@
 <template>
-  <div class="y-upload" :style="{height:height+'px'}">
+  <div class="y-upload" :style="{height:(height+25)+'px'}">
     <div
       class="view"
       v-if="imgUrl.length>0"
@@ -176,7 +176,7 @@ export default {
               imgPath: res.imgurl || res.data.path || res.data,
               id: res.data.id
             };
-            this.imgUrl.push(obj);
+            this.imgUrl.push(res.data.id?obj.imgPath:obj);
             this.$emit("uploadChildSay", this.imgUrl);
             if (this.imgUrl.length == files.length) {
               this.$message.success("图片上传成功");

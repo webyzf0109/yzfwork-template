@@ -112,7 +112,7 @@ class formData {
                 sizeHeight: 750,
                 num: 1,
                 maxNum: 1,
-                sizeShow: false,
+                sizeShow: true,
                 token: '5753607077759900',
                 // uploadUrl:'/ikucun-service/web/distributionExtract/uploadImg',//爱库存的
                 uploadUrl: '/manage/attachmentSubdivide/uploadImg',//电商分类
