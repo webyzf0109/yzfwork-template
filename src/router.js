@@ -9,68 +9,63 @@ export default new Router({
     {
       path:'/newLayout',
       name:'newLayout',
-      component: resolve=>(require(["@/views/newLayout/newLayout.vue"],resolve)),
+      component: () => import(/* webpackChunkName: "newLayout" */ './views/newLayout/newLayout.vue'),
     },
     {
       path: '/',
       name: 'layout',
-      component: resolve=>(require(["@/views/layout/layout.vue"],resolve)),
+      component: () => import(/* webpackChunkName: "layout" */ './views/layout/layout.vue'),
       redirect: '/use',
       children: [
         {
           path: '/use',
           name: 'use',
-          component: resolve=>(require(["@/views/use/use.vue"],resolve)),
+          component: () => import(/* webpackChunkName: "use" */ './views/use/use.vue'),
         },
         {
           path: '/table',
           name: 'table',
-          component: resolve=>(require(["@/views/table/table.vue"],resolve)),
+          component: () => import(/* webpackChunkName: "table" */ './views/table/table.vue'),
         },
         {
           path: '/form',
           name: 'form',
-          component: resolve=>(require(["@/views/form/form.vue"],resolve)),
+          component: () => import(/* webpackChunkName: "form" */ './views/form/form.vue'),
         },
         {
           path: '/upload',
           name: 'upload',
-          component: resolve=>(require(["@/views/upload/upload.vue"],resolve)),
+          component: () => import(/* webpackChunkName: "upload" */ './views/upload/upload.vue'),
         },
         {
           path: '/button',
           name: 'button',
-          component: resolve=>(require(["@/views/button/button.vue"],resolve)),
+          component: () => import(/* webpackChunkName: "button" */ './views/button/button.vue'),
         },
         {
           path: '/color',
           name: 'color',
-          component: resolve=>(require(["@/views/color/color.vue"],resolve)),
+          component: () => import(/* webpackChunkName: "color" */ './views/color/color.vue'),
         },
         {
           path: '/ueEditor',
           name: 'ueEditor',
-          component: resolve=>(require(["@/views/editor/ueEditor.vue"],resolve)),
+          component: () => import(/* webpackChunkName: "ueEditor" */ './views/editor/ueEditor.vue'),
         },
         {
           path: '/vueHtmlEditor',
           name: 'vueHtmlEditor',
-          component: resolve=>(require(["@/views/editor/vueHtmlEditor.vue"],resolve)),
+          component: () => import(/* webpackChunkName: "vueHtmlEditor" */ './views/editor/vueHtmlEditor.vue'),
         },
         {
           path: '/breadCrumb',
           name: 'breadCrumb',
-          component: resolve=>(require(["@/views/breadCrumb/breadCrumb.vue"],resolve)),
+          component: () => import(/* webpackChunkName: "breadCrumb" */ './views/breadCrumb/breadCrumb.vue'),
         },
         {
           path:'/page',
           name:'page',
-          component: resolve=>(require(["@/views/page/page.vue"],resolve)),
-        },
-        {
-          path:'/tree',
-          name:'tree',
-          component: resolve=>(require(["@/views/tree/tree.vue"],resolve)),
+          component: () => import(/* webpackChunkName: "page" */ './views/page/page.vue'),
         }
       ]
     },
