@@ -176,7 +176,7 @@ export default {
               imgPath: res.imgurl || res.data.path || res.data,
               id: res.data.id
             };
-            this.imgUrl.push(res.data.id?obj.imgPath:obj);
+            this.imgUrl.push(res.data.id?obj:obj.imgPath);
             this.$emit("uploadChildSay", this.imgUrl);
             if (this.imgUrl.length == files.length) {
               this.$message.success("图片上传成功");
