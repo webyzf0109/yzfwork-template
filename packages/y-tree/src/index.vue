@@ -68,6 +68,7 @@ export default {
   watch: {
     defaultCheckedData: function(newValue, oldValue) {
       this.newCheckedData = newValue;
+      this.setDefaultData();
     }
   },
   //方法集合
@@ -100,6 +101,9 @@ export default {
     },
     //节点发生变化
     checkedChange() {
+       if(this.arr.length==0){
+        this.getAllId();
+      }
       this.newCheckedData=this.$refs.tree.getCheckedKeys();
       let length = this.$refs.tree.getCheckedKeys().length;
       this.allChecked = length == this.arr.length ? true : false;
@@ -111,6 +115,9 @@ export default {
     },
     //全选监听
     allCheckedChange(val) {
+      if(this.arr.length==0){
+        this.getAllId();
+      }
       if (val) {
         this.$refs.tree.setCheckedKeys(this.arr);
       } else {

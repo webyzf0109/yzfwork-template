@@ -4,6 +4,7 @@ import yForm from './y-form'
 import yUpload from './y-upload'
 import yButton from './y-button'
 import yVueEditor from './y-vueEditor'
+import yEditor from './y-editor'
 import yBread from './y-bread'
 import yPage from './y-page'
 import yTree from './y-tree'
@@ -14,6 +15,7 @@ const components = [
     yUpload,
     yButton,
     yVueEditor,
+    yEditor,
     yBread,
     yPage,
     yTree
@@ -39,6 +41,7 @@ export default {
     yUpload,
     yButton,
     yVueEditor,
+    yEditor,
     yBread,
     yPage,
     yTree

@@ -6,6 +6,8 @@
       <li>模型的构建支持 render</li>
       <li>对于复杂的横列信息,我们提供了slot属性,可以自定义自己想要的内容（不超过5个）</li>
       <li>html代码量很少,方便阅读,js数据是动态获取,model模型可以提出到js。这样写的好处是 便于后期维护以及样式的统一性、一致性，最主要的还是提升效率</li>
+      <li class="active"> 设置默认选中数据：this.$refs.tableBox.toggleSelection(rows);</li>
+      <li class="active"> 有全选时,isReserve为true时：清除选中数据  this.$refs.tableBox.clearSelect();</li>
     </ul>
     <h3>示例</h3>
     <y-table

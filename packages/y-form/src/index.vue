@@ -489,6 +489,8 @@ export default {
         this.iformData[prop] = val;
         this.$refs["upload"][0].clearValidate();
         this.$emit("uploadCallback", this.iformData[prop]);
+      }else{
+        this.iformData[prop] = '';
       }
     },
     checkedChange(val, prop) {

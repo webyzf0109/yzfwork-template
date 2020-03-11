@@ -48,14 +48,14 @@ export default new Router({
           component: () => import(/* webpackChunkName: "color" */ './views/color/color.vue'),
         },
         {
-          path: '/ueEditor',
-          name: 'ueEditor',
-          component: () => import(/* webpackChunkName: "ueEditor" */ './views/editor/ueEditor.vue'),
-        },
-        {
           path: '/vueHtmlEditor',
           name: 'vueHtmlEditor',
           component: () => import(/* webpackChunkName: "vueHtmlEditor" */ './views/editor/vueHtmlEditor.vue'),
+        },
+        {
+          path: '/editor',
+          name: 'editor',
+          component: () => import(/* webpackChunkName: "vueHtmlEditor" */ './views/editor/editor.vue'),
         },
         {
           path: '/breadCrumb',
@@ -66,6 +66,11 @@ export default new Router({
           path:'/page',
           name:'page',
           component: () => import(/* webpackChunkName: "page" */ './views/page/page.vue'),
+        },
+        {
+          path:'/tree',
+          name:'tree',
+          component: () => import(/* webpackChunkName: "page" */ './views/tree/tree.vue'),
         }
       ]
     },

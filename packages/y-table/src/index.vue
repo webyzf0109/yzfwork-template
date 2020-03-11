@@ -3,10 +3,12 @@
     <el-table
       :data="tableData"
       :border="border"
-      highlight-current-row
+       highlight-current-row
+       ref="table"
       :span-method="merge"
       :stripe="stripe"
       :default-sort="defaultSort"
+      :row-key="rowKey"
       @current-change="handleCurrentChange"
       @selection-change="selectChangeHandler"
       @sort-change="sortChange"
@@ -31,6 +33,7 @@
         :width="col.width"
         :min-width="col.minWidth"
         :selectable="col.selectable"
+        :reserve-selection="col.isReserve"
       ></el-table-column>
       <el-table-column
         :align="col.align"
@@ -140,6 +143,12 @@ export default {
     };
   },
   props: {
+    rowKey:{
+      type: [String, Function],
+      default() {
+        return "";
+      }
+    },
     tableWidth: {
       type: [String, Number],
       default() {
@@ -208,6 +217,20 @@ export default {
     },
     sortChange(column, prop, order ){
       this.$emit("sortChange", column, prop, order );
+    },
+    /**设置默认选中项 */
+    toggleSelection(rows,selected=true) {
+      if (rows) {
+        rows.forEach(row => {
+          this.$refs.table.toggleRowSelection(row,selected);
+        });
+      } else {
+        this.$refs.table.clearSelection();
+      }
+    },
+    /**清空选中的值 */
+    clearSelect () {
+      this.$refs.table.clearSelection()
     },
     // 单选发生变化的时候
     handleCurrentChange(row) {

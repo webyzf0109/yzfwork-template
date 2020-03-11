@@ -133,6 +133,7 @@ export default {
     },
     remove(index) {
       this.imgUrl.splice(index, 1);
+      this.$emit('uploadChildSay',this.imgUrl)
     },
     handle(e) {
       var imgLength = this.imgUrl.length;
@@ -176,7 +177,7 @@ export default {
               imgPath: res.imgurl || res.data.path || res.data,
               id: res.data.id
             };
-            this.imgUrl.push(res.data.id?obj:obj.imgPath);
+            this.imgUrl.push(obj);
             this.$emit("uploadChildSay", this.imgUrl);
             if (this.imgUrl.length == files.length) {
               this.$message.success("图片上传成功");

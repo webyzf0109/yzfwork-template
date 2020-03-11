@@ -22,3 +22,6 @@ code{
     color: #5e6d82;
     margin: 15px 0;
 }
+.ul-info .active{
+    color: red;
+}

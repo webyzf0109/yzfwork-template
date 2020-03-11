@@ -2,17 +2,13 @@
 <template>
   <div class="vue-htmleditor">
     <h1>vue-html5editor</h1>
-    <ul class="ul-info">
-      <li>这里封装 直接调用即可,只需传相关配置项</li>
-    </ul>
+   
     <h1>效果展示</h1>
     <div style="margin-top:20px;">
       <y-vueEditor
         :content="content"
-        :uploadUrl="uploadUrl"
         :width="500"
         :height="300"
-        :token="token"
         @updateData="updateData"
       ></y-vueEditor>
     </div>
@@ -20,6 +16,12 @@
       <code>
           {{code}}
       </code>
+    </pre>
+     <ul class="ul-info">
+      <li>具体引用流程见下：(main.js中配置)</li>
+    </ul>
+    <pre v-highlightA>
+      <code>{{mainCode}}</code>
     </pre>
     <y-table :tableData="demo_tableData" :tableModel="demo_tableModel"></y-table>
   </div>
@@ -32,10 +34,9 @@ export default {
   data() {
     //这里存放数据
     return {
-      uploadUrl: process.env.VUE_APP_manage_uploadUrl,
-      token:"Bearer " + localStorage.getItem("token"),
       content: "这是vueEditor组件",
       code: demoCode.code,
+      mainCode:demoCode.mainCode,
       demo_tableData: demoCode.demo_tableData,
       demo_tableModel: demoCode.demo_tableModel
     };

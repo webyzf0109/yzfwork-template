@@ -128,7 +128,7 @@ export default {
           parentId: 0,
           childList: [
             { id: 7, name: "vueHtml5", path: "/vueHtmlEditor", parentId: 6 },
-            { id: 8, name: "ueEditor", path: "/ueEditor", parentId: 6 }
+            { id: 8, name: "editor", path: "/editor", parentId: 7 }
           ]
         },
         {
