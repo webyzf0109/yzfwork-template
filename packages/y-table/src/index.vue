@@ -74,61 +74,27 @@
           ></v-render>
         </template>
       </el-table-column>
-      <el-table-column
-        :label="col.label"
-        :width="col.width"
-        :min-width="col.minWidth"
-        :sortable="col.sortable"
-        v-else-if="col.slot=='operation1'"
-      >
-        <template slot-scope="scope">
-          <slot name="operation1" :scope="scope"></slot>
+
+      <template
+          v-for="(item, index) in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]"
+        >
+          <el-table-column
+            :show-overflow-tooltip="iSTooltip ? iSTooltip : col.iSTooltip"
+            :fixed="col.fixed"
+            :key="col.prop"
+            :align="col.align"
+            :label="col.label"
+            :width="col.width"
+            :min-width="col.minWidth"
+            :sortable="col.sortable"
+            v-if="col.slot == 'operation' + (index + 1)"
+          >
+            <template slot-scope="scope">
+              <slot :name="'operation' + (index + 1)" :scope="scope"></slot>
+            </template>
+          </el-table-column>
         </template>
-      </el-table-column>
-      <el-table-column
-        :label="col.label"
-        :width="col.width"
-        :min-width="col.minWidth"
-        :sortable="col.sortable"
-        v-else-if="col.slot=='operation2'"
-      >
-        <template slot-scope="scope" v-if="col.slot=='operation2'">
-          <slot name="operation2" :scope="scope"></slot>
-        </template>
-      </el-table-column>
-      <el-table-column
-        :label="col.label"
-        :width="col.width"
-        :min-width="col.minWidth"
-        :sortable="col.sortable"
-        v-else-if="col.slot=='operation3'"
-      >
-        <template slot-scope="scope" v-if="col.slot=='operation3'">
-          <slot name="operation3" :scope="scope"></slot>
-        </template>
-      </el-table-column>
-      <el-table-column
-        :label="col.label"
-        :width="col.width"
-        :min-width="col.minWidth"
-        :sortable="col.sortable"
-        v-else-if="col.slot=='operation4'"
-      >
-        <template slot-scope="scope" v-if="col.slot=='operation4'">
-          <slot name="operation4" :scope="scope"></slot>
-        </template>
-      </el-table-column>
-      <el-table-column
-        :label="col.label"
-        :width="col.width"
-        :min-width="col.minWidth"
-        :sortable="col.sortable"
-        v-else-if="col.slot=='operation5'"
-      >
-        <template slot-scope="scope" v-if="col.slot=='operation5'">
-          <slot name="operation5" :scope="scope"></slot>
-        </template>
-      </el-table-column>
+     
     </el-table>
   </div>
 </template>

@@ -39,7 +39,7 @@
   </div>
 </template>
 <script>
-import ajax from "@/api/axios";
+import axios from "axios";
 export default {
   name: "y-upload",
   data() {
@@ -101,7 +101,8 @@ export default {
     uploadUrl: {
       type: String,
       default() {
-        return 1;
+        // return  `/apigb/platform/v1/finance/common/upload-file`; //之前
+        return window.$globalConfig.API_BASE+`/apiz/rest/terminal/manage/apigb/platform/v1/oss/upload-file-batch`
       }
     },
     sizeShow: {
@@ -119,7 +120,6 @@ export default {
   },
   created() {
     this.imgUrl = this.imgList;
-    // this.imgUrl=['https://ufund-1255803266.cos.ap-shanghai.myqcloud.com/67bfd9d51df648daac7679e843e07571.jpg','https://ufund-1255803266.cos.ap-shanghai.myqcloud.com/67bfd9d51df648daac7679e843e07571.jpg','https://ufund-1255803266.cos.ap-shanghai.myqcloud.com/67bfd9d51df648daac7679e843e07571.jpg']
   },
   watch: {
     imgList: function(newValue, oldValue) {
@@ -159,23 +159,27 @@ export default {
         ) {
           this.$message.error("上传文件格式不对");
           return;
-        } else if (files[i].size >= 2048000) {
-          this.$message.error("图片大小不得超过2M");
+        } else if (files[i].size >= 20048000) {
+          this.$message.error("图片大小不得超过20M");
           return;
         }
         let formdata = new FormData();
         formdata.append("file", files[i]);
-        ajax
+        axios
           .post(this.uploadUrl, formdata, {
             headers: {
-              Authorization: "Bearer " + this.token
+              // Authorization: "Bearer " + this.token,
+              // token:this.token
             }
           })
           .then(res => {
+            
+            console.log(res,'------res')
+
             e.target.value = "";
             let obj = {
-              imgPath: res.imgurl || res.data.path || res.data,
-              id: res.data.id
+              imgPath:res.data[0].downUrl || res.data[0].url || res.data[0].path || res.data[0],
+              imgCode:res.data[0].downCode
             };
             this.imgUrl.push(obj);
             this.$emit("uploadChildSay", this.imgUrl);
